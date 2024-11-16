@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Publications Page for Displaying Published Work">
+    <title>Publications</title>
+    <style>
+        /* Basic styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #003366;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .publication-list {
+            margin-top: 20px;
+        }
+
+        .publication {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .publication-title {
+            font-weight: bold;
+        }
+
+        .publication-details {
+            color: #555;
+        }
+
+        .publication-authors, .publication-journal, .publication-year, .publication-pages {
+            color: #555;
+        }
+
+        .publication-number {
+            font-weight: bold;
+            color: #003366;
+        }
+
+        .publication-section-title {
+            font-size: 1.3em;
+            margin-top: 20px;
+            color: #003366;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Publications</h1>
+    </header>
+
+    <div class="container">
+        <!-- Publications of Our Team Section -->
+        <div class="section">
+            <h2 class="publication-section-title">Publications of Our Team</h2>
+            <div id="teamPublicationList" class="publication-list">
+                <!-- Publications will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- BibTeX Parser Script -->
+    <script>
+        // BibTeX data for publications related to PGAz (empty for now)
+        var pgaBibtexData = ``;
+
+        // BibTeX data for publications of our team
+        var teamBibtexData = `
+        @article{surinkaew2024informatics,
+          title={Informatics-Centric Neural Network for Distributed Energy Resources Against Diverse Cyber Threats},
+          author={Surinkaew, Tossaporn and Kerdphol, Thongchart},
+          journal={IEEE Transactions on Industrial Informatics},
+          year={2024},
+          publisher={IEEE}
+        },
+        @article{ngamroo2024resiliency,
+          title={Resiliency-Guided Grid-Forming Converter Control of Distributed Solar-Powered Electric Vehicles},
+          author={Ngamroo, Issarachai and Surinkaew, Tossaporn},
+          journal={IEEE Transactions on Intelligent Transportation Systems},
+          year={2024},
+          publisher={IEEE}
+        },
+        @article{pinthurat2024overview,
+          title={An overview of reinforcement learning-based approaches for smart home energy management systems with energy storages},
+          author={Pinthurat, Watcharakorn and Surinkaew, Tossaporn and Hredzak, Branislav},
+          journal={Renewable and Sustainable Energy Reviews},
+          volume={202},
+          pages={114648},
+          year={2024},
+          publisher={Elsevier}
+        },
+        @article{miah2024resiliency,
+          title={Resiliency Assessment and Enhancement of Renewable Dominated Edge of Grid Under High-Impact Low-Probability Events—A Review},
+          author={Miah, Md Sazal and Shah, Rakibuzzaman and Amjady, Nima and Surinkaew, Tossaporn and Islam, Syed},
+          journal={IEEE Transactions on Industry Applications},
+          year={2024},
+          publisher={IEEE}
+        },
+        @article{pinthurat2024adaptive,
+          title={An Adaptive Data-Driven-Based Control for Voltage Control Loop of Grid-Forming Converters in Variable Inertia MGs},
+          author={Pinthurat, Watcharakorn and Kongsuk, Prayad and Surinkaew, Tossaporn and Marungsri, Boonruang},
+          journal={IEEE Access},
+          year={2024},
+          publisher={IEEE}
+        },
+        @article{kerdphol2024enhanced,
+          title={Enhanced robust frequency stabilization of a microgrid against simultaneous cyber-attacks},
+          author={Kerdphol, Thongchart and Ngamroo, Issarachai and Surinkaew, Tossaporn},
+          journal={Electric Power Systems Research},
+          volume={228},
+          pages={110006},
+          year={2024},
+          publisher={Elsevier}
+        },
+        @article{pinthurat2023simultaneous,
+          title={Simultaneous Voltage Regulation and Unbalance Compensation in Distribution Systems With an Information-Driven Learning Approach},
+          author={Pinthurat, Watcharakorn and Surinkaew, Tossaporn and Hredzak, Branislav},
+          journal={IEEE Transactions on Industrial Informatics},
+          year={2024},
+          publisher={IEEE}
+        },
+        @article{ngamroo2023control,
+          title={Control of distributed converter-based resources in a zero-inertia microgrid using robust deep learning neural network},
+          author={Ngamroo, Issarachai and Surinkaew, Tossaporn},
+          journal={IEEE Transactions on Smart Grid},
+          volume={15},
+          number={1},
+          pages={49--66},
+          year={2024},
+          publisher={IEEE}
+        },
+        @article{surinkaew2023forced,
+          title={Forced oscillation management in a microgrid with distributed converter-based resources using hierarchical deep-learning neural network},
+          author={Surinkaew, Tossaporn and Emami, Kianoush and Shah, Rakibuzzaman and Islam, Md Rabiul and Islam, Syed},
+          journal={Electric Power Systems Research},
+          volume={222},
+          pages={109479},
+          year={2023},
+          publisher={Elsevier}
+        },
+        @article{kerdphol2023forced,
+          title={Forced oscillation suppression using extended virtual synchronous generator in a low-Inertia microgrid},
+          author={Kerdphol, Thongchart and Ngamroo, Issarachai and Surinkaew, Tossaporn},
+          journal={International Journal of Electrical Power \& Energy Systems},
+          volume={151},
+          pages={109126},
+          year={2023},
+          publisher={Elsevier}
+        },
+        @article{khemmook2022control,
+          title={Control of a microgrid using robust data-driven-based controllers of distributed electric vehicles},
+          author={Khemmook, Panya and Prompinit, Krisada and Surinkaew, Tossaporn},
+          journal={Electric Power Systems Research},
+          volume={213},
+          pages={108681},
+          year={2022},
+          publisher={Elsevier}
+        },
+        @article{surinkaew2022unified,
+          title={A unified damping controller for non-stationary forced oscillation},
+          author={Surinkaew, Tossaporn and Emami, Kianoush and Shah, Rakibuzzaman and Mithulananthan, N and Muyeen, SM and Fernando, Tyrone},
+          journal={International Journal of Electrical Power \& Energy Systems},
+          volume={143},
+          pages={108410},
+          year={2022},
+          publisher={Elsevier}
+        },
+        @article{ngamroo2022coordinated,
+          title={Coordinated decentralized and centralized microgrid control for distributed renewable energy sources with integrated batteries},
+          author={Ngamroo, Issarachai and Surinkaew, Tossaporn},
+          journal={IET Renewable Power Generation},
+          volume={16},
+          number={15},
+          pages={3251--3266},
+          year={2022},
+          publisher={Wiley Online Library}
+        },
+        @article{surinkaew2021forced,
+          title={Forced oscillation in power systems with converter controlled-based resources--A survey with case studies},
+          author={Surinkaew, Tossaporn and Emami, Kianoush and Shah, Rakibuzzaman and Islam, Syed and Mithulananthan, Nadarajah},
+          journal={IEEE Access},
+          volume={9},
+          pages={150911--150924},
+          year={2021},
+          publisher={IEEE}
+        },
+        @article{ngamroo2021adaptive,
+          title={Adaptive robust control based on system identification in microgrid considering converter controlled-based generator modes},
+          author={Ngamroo, Issarachai and Surinkaew, Tossaporn},
+          journal={IEEE Access},
+          volume={9},
+          pages={125970--125983},
+          year={2021},
+          publisher={IEEE}
+        },
+        @article{surinkaew2021forced,
+          title={Forced oscillation detection amid communication uncertainties},
+          author={Surinkaew, Tossaporn and Shah, Rakibuzzaman and Nadarajah, Mithulananthan and Muyeen, SM and Emami, Kianoush and Ngamroo, Issarachai},
+          journal={IEEE Systems Journal},
+          volume={15},
+          number={3},
+          pages={4644--4655},
+          year={2021},
+          publisher={IEEE}
+        },
+        @article{surinkaew2020forced,
+          title={Forced oscillation damping controller for an interconnected power system},
+          author={Surinkaew, Tossaporn and Shah, Rakibuzzaman and Nadarajah, Mithulananthan and Muyeen, SM},
+          journal={IET Generation, Transmission \& Distribution},
+          volume={14},
+          number={2},
+          pages={339--347},
+          year={2020},
+          publisher={Wiley Online Library}
+        },
+        @article{surinkaew2020novel,
+          title={Novel control design for simultaneous damping of inter-area and forced oscillation},
+          author={Surinkaew, Tossaporn and Shah, Rakibuzzaman and Muyeen, SM and Mithulananthan, Nadarajah and Emami, Kianoush and Ngamroo, Issarachai},
+          journal={IEEE Transactions on Power Systems},
+          volume={36},
+          number={1},
+          pages={451--463},
+          year={2020},
+          publisher={IEEE}
+        },
+        @article{surinkaew2018inter,
+          title={Inter-area oscillation damping control design considering impact of variable latencies},
+          author={Surinkaew, Tossaporn and Ngamroo, Issarachai},
+          journal={IEEE Transactions on Power Systems},
+          volume={34},
+          number={1},
+          pages={481--493},
+          year={2018},
+          publisher={IEEE}
+        },
+        @article{surinkaew2017two,
+          title={Two-level coordinated controllers for robust inter-area oscillation damping considering impact of local latency},
+          author={Surinkaew, Tossaporn and Ngamroo, Issarachai},
+          journal={IET Generation, Transmission \& Distribution},
+          volume={11},
+          number={18},
+          pages={4520--4530},
+          year={2017},
+          publisher={Wiley Online Library}
+        }
+        @article{surinkaew2017adaptive,
+          title={Adaptive signal selection of wide-area damping controllers under various operating conditions},
+          author={Surinkaew, Tossaporn and Ngamroo, Issarachai},
+          journal={IEEE Transactions on Industrial Informatics},
+          volume={14},
+          number={2},
+          pages={639--651},
+          year={2017},
+          publisher={IEEE}
+        },
+        @article{surinkaew2016hierarchical,
+            title={Hierarchical co-ordinated wide area and local controls of DFIG wind turbine and PSS for robust power oscillation damping},
+            author={Surinkaew, Tossaporn and Ngamroo, Issarachai},
+            journal={IEEE Transactions on Sustainable Energy},
+            volume={7},
+            number={3},
+            pages={943--955},
+            year={2016},
+            publisher={IEEE}
+        },
+        @article{ngamroo2016design,
+          title={Design of optimal SMES controller considering SOC and robustness for microgrid stabilization},
+          author={Ngamroo, Issarachai and Vachirasricirikul, Sitthidet},
+          journal={IEEE Transactions on Applied superconductivity},
+          volume={26},
+          number={7},
+          pages={1--5},
+          year={2016},
+          publisher={IEEE}
+        },
+        @article{sa2015intelligent,
+          title={Intelligent photovoltaic farms for robust frequency stabilization in multi-area interconnected power system based on PSO-based optimal Sugeno fuzzy logic control},
+          author={Sa-ngawong, Nattapol and Ngamroo, Issarachai},
+          journal={Renewable Energy},
+          volume={74},
+          pages={555--567},
+          year={2015},
+          publisher={Elsevier}
+        },
+        @article{pahasa2014phevs,
+          title={PHEVs bidirectional charging/discharging and SoC control for microgrid frequency stabilization using multiple MPC},
+          author={Pahasa, Jonglak and Ngamroo, Issarachai},
+          journal={IEEE Transactions on Smart Grid},
+          volume={6},
+          number={2},
+          pages={526--533},
+          year={2014},
+          publisher={IEEE}
+        },
+        @article{karaipoom2014optimal,
+          title={Optimal superconducting coil integrated into DFIG wind turbine for fault ride through capability enhancement and output power fluctuation suppression},
+          author={Karaipoom, Tanapon and Ngamroo, Issarachai},
+          journal={IEEE Transactions on Sustainable Energy},
+          volume={6},
+          number={1},
+          pages={28--42},
+          year={2014},
+          publisher={IEEE}
+        },
+        @article{ngamroo2014cooperative,
+          title={Cooperative control of SFCL and SMES for enhancing fault ride through capability and smoothing power fluctuation of DFIG wind farm},
+          author={Ngamroo, Issarachai and Karaipoom, Tanapon},
+          journal={IEEE Transactions on Applied Superconductivity},
+          volume={24},
+          number={5},
+          pages={1--4},
+          year={2014},
+          publisher={IEEE}
+        },
+        @article{ngamroo2014improving,
+          title={Improving low-voltage ride-through performance and alleviating power fluctuation of DFIG wind turbine in DC microgrid by optimal SMES with fault current limiting function},
+          author={Ngamroo, Issarachai and Karaipoom, Tanapon},
+          journal={IEEE Transactions on Applied Superconductivity},
+          volume={24},
+          number={5},
+          pages={1--5},
+          year={2014},
+          publisher={IEEE}
+        },
+        @article{chaiyatham2014improvement,
+          title={Improvement of power system transient stability by PV farm with fuzzy gain scheduling of PID controller},
+          author={Chaiyatham, Theerawut and Ngamroo, Issarachai},
+          journal={IEEE Systems Journal},
+          volume={11},
+          number={3},
+          pages={1684--1691},
+          year={2014},
+          publisher={IEEE}
+        },
+        @article{pahasa2014coordinated,
+          title={Coordinated control of wind turbine blade pitch angle and PHEVs using MPCs for load frequency control of microgrid},
+          author={Pahasa, Jonglak and Ngamroo, Issarachai},
+          journal={IEEE Systems Journal},
+          volume={10},
+          number={1},
+          pages={97--105},
+          year={2014},
+          publisher={IEEE}
+        },
+        @article{surinkaew2014coordinated,
+            title={Coordinated robust control of DFIG wind turbine and PSS for stabilization of power oscillations considering system uncertainties},
+            author={Surinkaew, Tossaporn and Ngamroo, Issarachai},
+            journal={IEEE Transactions on Sustainable Energy},
+            volume={5},
+            number={3},
+            pages={823--833},
+            year={2014},
+            publisher={IEEE}
+        },
+        @article{surinkaew2014robust,
+          title={Robust power oscillation damper design for DFIG-based wind turbine based on specified structure mixed H2/H∞ control},
+          author={Surinkaew, Tossaporn and Ngamroo, Issarachai},
+          journal={Renewable energy},
+          volume={66},
+          pages={15--24},
+          year={2014},
+          publisher={Elsevier}
+        },
+        @article{vachirasricirikul2014robust,
+          title={Robust LFC in a smart grid with wind power penetration by coordinated V2G control and frequency controller},
+          author={Vachirasricirikul, Sitthidet and Ngamroo, Issarachai},
+          journal={IEEE Transactions on Smart Grid},
+          volume={5},
+          number={1},
+          pages={371--380},
+          year={2014},
+          publisher={IEEE}
+        },
+        @article{ngamroo2013optimized,
+          title={Optimized SFCL and SMES units for multimachine transient stabilization based on kinetic energy control},
+          author={Ngamroo, Issarachai and Vachirasricirikul, Sitthidet},
+          journal={IEEE Transactions on Applied Superconductivity},
+          volume={23},
+          number={3},
+          pages={5000309--5000309},
+          year={2013},
+          publisher={IEEE}
+        },
+        @article{ngamroo2012application,
+          title={Application of electrolyzer to alleviate power fluctuation in a stand alone microgrid based on an optimal fuzzy PID control},
+          author={Ngamroo, Issarachai},
+          journal={International Journal of Electrical Power \& Energy Systems},
+          volume={43},
+          number={1},
+          pages={969--976},
+          year={2012},
+          publisher={Elsevier}
+        },
+        @article{saejia2011alleviation,
+          title={Alleviation of power fluctuation in interconnected power systems with wind farm by SMES with optimal coil size},
+          author={Saejia, Mongkol and Ngamroo, Issarachai},
+          journal={IEEE Transactions on Applied Superconductivity},
+          volume={22},
+          number={3},
+          pages={5701504--5701504},
+          year={2011},
+          publisher={IEEE}
+        },
+        @article{ngamroo2011coordinated,
+          title={Coordinated control of optimized SFCL and SMES for improvement of power system transient stability},
+          author={Ngamroo, Issarachai and Vachirasricirikul, Sitthidet},
+          journal={IEEE Transactions on Applied Superconductivity},
+          volume={22},
+          number={3},
+          pages={5600805--5600805},
+          year={2011},
+          publisher={IEEE}
+        },
+        @article{vachirasricirikul2011robust,
+          title={Robust controller design of heat pump and plug-in hybrid electric vehicle for frequency control in a smart microgrid based on specified-structure mixed H2/H∞ control technique},
+          author={Vachirasricirikul, Sitthidet and Ngamroo, Issarachai},
+          journal={Applied energy},
+          volume={88},
+          number={11},
+          pages={3860--3868},
+          year={2011},
+          publisher={Elsevier}
+        },
+        @article{ngamroo2011simultaneous,
+          title={Simultaneous optimization of SMES coil size and control parameters for robust power system stabilization},
+          author={Ngamroo, Issarachai},
+          journal={IEEE Transactions on Applied Superconductivity},
+          volume={21},
+          number={3},
+          pages={1358--1361},
+          year={2011},
+          publisher={IEEE}
+        },
+        @article{saejia2011robust,
+          title={A robust centralized SMES controller design based on WAMS considering system and communication delay uncertainties},
+          author={Saejia, Mongkol and Ngamroo, Issarachai},
+          journal={Electric power systems research},
+          volume={81},
+          number={4},
+          pages={846--852},
+          year={2011},
+          publisher={Elsevier}
+        },
+        @article{vachirasricirikul2010coordinated,
+          title={Coordinated SVC and AVR for robust voltage control in a hybrid wind-diesel system},
+          author={Vachirasricirikul, Sitthidet and Ngamroo, Issarachai and Kaitwanidvilai, Somyot},
+          journal={Energy Conversion and Management},
+          volume={51},
+          number={12},
+          pages={2383--2393},
+          year={2010},
+          publisher={Elsevier}
+        },
+        @article{pothiya2010ant,
+          title={Ant colony optimisation for economic dispatch problem with non-smooth cost functions},
+          author={Pothiya, Saravuth and Ngamroo, Issarachai and Kongprawechnon, Waree},
+          journal={International Journal of Electrical Power \& Energy Systems},
+          volume={32},
+          number={5},
+          pages={478--487},
+          year={2010},
+          publisher={Elsevier}
+        }
+        `;
+
+        // Function to format author names as "First Last"
+        function formatAuthors(authors) {
+            return authors.split(' and ').map(function(author) {
+                var nameParts = author.split(', ');
+                return nameParts[1] + ' ' + nameParts[0]; // Reverses from "Last, First" to "First Last"
+            }).join(', ');
+        }
+
+        // Function to parse BibTeX data and display publications in IEEE format with numbering
+        function parseBibTeXData(bibtexData, publicationListId) {
+            // Split BibTeX data into entries
+            var entries = bibtexData.split('@article');
+            var publicationList = document.getElementById(publicationListId);
+
+            // Remove the first empty entry (due to split at the beginning)
+            entries.shift();
+
+            // Iterate over entries and create HTML elements
+            entries.forEach(function(entry, index) {
+                var publicationElement = document.createElement('div');
+                publicationElement.classList.add('publication');
+                
+                // Extract title, authors, journal, year, and pages from the BibTeX entry
+                var title = entry.match(/title=\{([^}]+)\}/)[1];
+                var authors = entry.match(/author=\{([^}]+)\}/)[1];
+                var journal = entry.match(/journal=\{([^}]+)\}/)[1];
+                var year = entry.match(/year=\{([^}]+)\}/)[1];
+                var volume = entry.match(/volume=\{([^}]+)\}/) ? entry.match(/volume=\{([^}]+)\}/)[1] : "";
+                var issue = entry.match(/number=\{([^}]+)\}/) ? entry.match(/number=\{([^}]+)\}/)[1] : "";
+                var pages = entry.match(/pages=\{([^}]+)\}/) ? entry.match(/pages=\{([^}]+)\}/)[1] : "N/A";
+                var publisher = entry.match(/publisher=\{([^}]+)\}/) ? entry.match(/publisher=\{([^}]+)\}/)[1] : "";
+
+                // Format the author names
+                var formattedAuthors = formatAuthors(authors);
+
+                // Format the citation in IEEE style
+                var ieeeCitation = `<span class="publication-number">${index + 1}.</span> <span class="publication-authors">${formattedAuthors}</span>, "<span class="publication-title">${title}</span>," <span class="publication-journal">${journal}</span>, vol. <span class="publication-volume">${volume}</span>, no. <span class="publication-issue">${issue}</span>, pp. <span class="publication-pages">${pages}</span>, <span class="publication-year">${year}</span>, <span class="publication-publisher">${publisher}</span>.`;
+
+                // Insert the publication details into the HTML
+                publicationElement.innerHTML = ieeeCitation;
+                publicationList.appendChild(publicationElement);
+            });
+        }
+
+        // Parse and display publications for each section
+        parseBibTeXData(pgaBibtexData, 'pgazPublicationList');
+        parseBibTeXData(teamBibtexData, 'teamPublicationList');
+    </script>
+
+</body>
+</html>

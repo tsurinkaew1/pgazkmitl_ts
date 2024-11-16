@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Activity</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%; /* Ensure header spans the full width */
+            padding: 0 20px; /* Padding to avoid text touching edges */
+            box-sizing: border-box;
+        }
+
+        .colored-text {
+            color: #003366;
+            display: block; /* Allow text to span full width */
+            font-size: 2em; /* Adjust font size as needed */
+        }
+
+        .team-activity {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .activity-item {
+            background-color: #ffffff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 15px;
+            width: 50%;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-item h2 {
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .activity-item p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .activity-item .date {
+            font-weight: bold;
+            color: #003366;
+        }
+
+        .activity-item .highlight {
+            color: #ff6600; /* Highlight color */
+        }
+
+        .activity-item ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        figure {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Image container for 1 row and 4 columns */
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+            grid-gap: 40px; /* Space between images */
+            justify-items: center; /* Center images in each grid cell */
+            margin-top: 20px;
+        }
+
+        /* Style for images */
+        .grid-img {
+            width: 100%; /* Set width to 100% of the container */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 100%; /* Prevent image from overflowing */
+            cursor: pointer;
+            transition: transform 0.3s ease; /* Add transition for zoom effect */
+        }
+
+        /* Zoom effect: scale to 150% */
+        .grid-img:hover {
+            transform: scale(1.5); /* Zoom in the image to 150% */
+        }
+
+        figure {
+            margin: 0; /* Remove default figure margin */
+        }
+
+        footer {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+
+        /* Ensure long text fits and wraps within the container */
+        .activity-item p {
+            word-wrap: break-word; /* Break long words if needed */
+            word-break: break-all; /* Allow text to break at any point if needed */
+            width: 100%; /* Make sure the text container takes up full width */
+            box-sizing: border-box; /* Ensure padding does not overflow */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1><strong class="colored-text">Team Activity</strong></h1>
+
+        <div class="team-activity">
+            <div class="activity-item">
+                <h2><strong>Prof. Dr. Issarachai Ngamroo</strong> as a keynote speaker at IEEE I&CPS ASIA 2024, July 9-12, 2024, Pattaya, Thailand, on the topic "<i>Stability Issues and Control Challenges for Carbon-Neutral Power Systems</i>."</h2>
+            </div>
+            
+            <!-- Container to arrange images in a 1-row 4-column grid -->
+            <div class="image-container">
+                <figure>
+                    <img src="./Team Activity/IEEE I&CPS 2024/F1.JPG" alt="Matrix F1" class="grid-img">
+                </figure>
+                <figure>
+                    <img src="./Team Activity/IEEE I&CPS 2024/F2.JPG" alt="Matrix F2" class="grid-img">
+                </figure>
+                <figure>
+                    <img src="./Team Activity/IEEE I&CPS 2024/F3.JPG" alt="Matrix F3" class="grid-img">
+                </figure>
+                <figure>
+                    <img src="./Team Activity/IEEE I&CPS 2024/F4.JPG" alt="Matrix F4" class="grid-img">
+                </figure>
+            </div>
+        </div>
+        <br><br>
+
+        <div class="team-activity">
+            <div class="activity-item">
+                <h2><strong>Prof. Dr. Issarachai Ngamroo</strong> as a "<i>Top 2% World Scientist 2024</i>."</h2>
+            </div>
+            
+            <figure>
+                <img src="./Team Activity/Top 2% 2024/Top2IN.JPG" alt="Matrix F1" class="grid-img">
+            </figure>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

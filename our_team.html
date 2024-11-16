@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .colored-text {
+            color: #003366; /* deep blue color */
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sub-team {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns */
+            gap: 20px; /* Adds space between the grid items */
+            margin-top: 20px;
+            width: 100%;
+            justify-items: center; /* Centers the items within the grid */
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column; /* Image above description */
+            align-items: center;
+            width: 100%;
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .team-member-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-member-info h2 {
+            margin: 0;
+            color: #003366;
+        }
+
+        .team-member-info p {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .team-member-info .role {
+            font-weight: bold;
+            color: #003366;
+        }
+
+        .advisor-info {
+            margin-top: 20px;
+            text-align: center;
+            color: #003366;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><strong class="colored-text">Power System Dynamics, Stability, and Control Laboratory</strong></h1>
+        <div class="team">
+
+            <div class="advisor-info">
+                <!-- Director -->
+                <div class="team-member">
+                    <img src="./Figure/Issarachai.jpg" alt="Director">
+                    <div class="team-member-info">
+                        <h2>Prof. Dr. Issarachai Ngamroo</h2>
+                        <p class="role">Director</p>
+                        <p>Ph.D., Electrical Engineering</p>
+                        <p>Department of Electrical Engineering, School of Engineering, KMITL</p>
+                    </div>
+                </div>
+                <br>
+
+                <!-- Lab Head -->
+                <div class="team-member">
+                    <img src="./Figure/Tossaporn.jpg" alt="Laboratory Head">
+                    <div class="team-member-info">
+                        <h2>Dr. Tossaporn Surinkaew</h2>
+                        <p class="role">Laboratory Head</p>
+                        <p>Ph.D., Electrical Engineering</p>
+                        <p>School of International & Interdisciplinary Engineering Programs, School of Engineering, KMITL</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Developers -->
+            <div class="sub-team">
+                <div class="team-member">
+                    <img src="./Figure/Avatar1.jpg" alt="Main Developer 1">
+                    <div class="team-member-info">
+                        <h2>----</h2>
+                        <p class="role">Main Developer</p>
+                        <p> B.Eng., Electrical Engineering </p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="./Figure/Avatar2.jpg" alt="Main Developer 2">
+                    <div class="team-member-info">
+                        <h2>----</h2>
+                        <p class="role">Main Developer</p>
+                        <p> B.Eng., Electrical Engineering </p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="./Figure/Avatar3.jpg" alt="Main Developer 3">
+                    <div class="team-member-info">
+                        <h2>----</h2>
+                        <p class="role">Main Developer</p>
+                        <p> B.Eng., Electrical Engineering </p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="./Figure/Avatar4.jpg" alt="Main Developer 4">
+                    <div class="team-member-info">
+                        <h2>----</h2>
+                        <p class="role">Main Developer</p>
+                        <p> B.Eng., Electrical Engineering </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laboratory Description with Colored Text -->
+            <div class="laboratory-description">
+                <p>Our laboratory specializes in research on power system stability, control mechanisms, and the enhancement of grid efficiency through advanced control strategies. If you're interested in joining our team, please contact us at <a href="mailto:tossaporn.su@kmitl.ac.th">tossaporn.su@kmitl.ac.th</a>.</p> 
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

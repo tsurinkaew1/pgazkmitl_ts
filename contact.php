@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Name: $name\n
         Email: $email\n
         Subject: $subject\n
-        Message: \n$message
+        Message: \n$message\n
     ";
 
     // Headers

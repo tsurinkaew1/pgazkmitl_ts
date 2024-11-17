@@ -210,19 +210,11 @@
         <div class="container">
             <h1>Contact Us</h1>
             <form action="contact.php" method="POST">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" required>
-
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="6" required></textarea>
-
-                <button type="submit">Submit</button>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="subject" placeholder="Subject" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
             </form>
         </div>
 

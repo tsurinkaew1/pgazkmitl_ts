@@ -5,88 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Team</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f4f8;
+        margin: 0;
+        padding: 0;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-        h1 {
-            color: #003366;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    h1 {
+        color: #003366;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        .colored-text {
-            color: #003366; /* deep blue color */
-        }
+    .colored-text {
+        color: #003366; /* deep blue color */
+    }
 
-        .team {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .team, .sub-team {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
 
-        .sub-team {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 columns */
-            gap: 20px; /* Adds space between the grid items */
-            margin-top: 20px;
-            width: 100%;
-            justify-items: center; /* Centers the items within the grid */
-        }
+    .sub-team {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 columns */
+        gap: 20px; /* Adds space between the grid items */
+        margin-top: 20px;
+        width: 100%;
+        justify-items: center; /* Centers the items within the grid */
+    }
 
-        .team-member {
-            display: flex;
-            flex-direction: column; /* Image above description */
-            align-items: center;
-            width: 100%;
-        }
+    .team-member {
+        display: flex;
+        flex-direction: column; /* Image above description */
+        align-items: center;
+        width: 100%;
+    }
 
-        .team-member img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            margin-bottom: 10px;
-        }
+    .team-member img {
+        border-radius: 50%;
+        width: 100px; /* Same size for both team and sub-team images */
+        height: 100px; /* Ensure square format */
+        margin-bottom: 10px;
+    }
 
-        .team-member-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .team-member-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .team-member-info h2 {
-            margin: 0;
-            color: #003366;
-        }
+    .team-member-info h2 {
+        margin: 0;
+        color: #003366;
+    }
 
-        .team-member-info p {
-            color: #666;
-            margin: 5px 0;
-        }
+    .team-member-info p {
+        color: #666;
+        margin: 5px 0;
+    }
 
-        .team-member-info .role {
-            font-weight: bold;
-            color: #003366;
-        }
+    .team-member-info .role {
+        font-weight: bold;
+        color: #003366;
+    }
 
-        .advisor-info {
-            margin-top: 20px;
-            text-align: center;
-            color: #003366;
-        }
-    </style>
+    .advisor-info {
+        margin-top: 20px;
+        text-align: center;
+        color: #003366;
+    }
+</style>
+
 </head>
 <body>
 

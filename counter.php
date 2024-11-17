@@ -2,7 +2,7 @@
 // File to store counter data
 $filename = 'counter.txt';
 
-// Check if the file exists, if not create it
+// Check if the file exists, if not, create it
 if (!file_exists($filename)) {
     file_put_contents($filename, "0|0");
 }
@@ -18,7 +18,7 @@ $page_views++;
 if (!isset($_COOKIE['unique_visitor'])) {
     $visitors++;
     // Set a cookie that expires in 24 hours
-    setcookie('unique_visitor', 'true', time() + (86400), "/");
+    setcookie('unique_visitor', 'true', time() + 86400, "/");
 }
 
 // Update the counter file

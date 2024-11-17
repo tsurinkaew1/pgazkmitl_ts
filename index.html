@@ -1,250 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Power Grid Analyzer (PGAz) - Software Update and Download Page">
-        <title>PGAz - Power Grid Analyzer</title>
-        <style>
-            /* Basic Reset */
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: Arial, sans-serif;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Power Grid Analyzer (PGAz) - Software Update and Download Page">
+    <title>PGAz - Power Grid Analyzer</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-            body {
-                background-color: #f0f4f8;
-                color: #333;
-                line-height: 1.5;
-            }
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.5;
+        }
 
-            header {
-                background-color: #003366;
-                color: #fff;
-                padding: 20px 0;
-                text-align: center;
-            }
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
 
-            header h1 {
-                font-size: 2.5em;
-            }
+        header h1 {
+            font-size: 2.5em;
+        }
 
-            nav {
-                background-color: #004080;
-                text-align: center;
-                padding: 10px 0;
-            }
+        nav {
+            background-color: #004080;
+            text-align: center;
+            padding: 10px 0;
+        }
 
-            nav a {
-                color: #fff;
-                margin: 0 15px;
-                text-decoration: none;
-                font-weight: bold;
-                font-size: 1.25em;
-            }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.25em;
+        }
 
-            nav a:hover {
-                text-decoration: underline;
-            }
+        nav a:hover {
+            text-decoration: underline;
+        }
 
-            .container {
-                max-width: 1200px;
-                margin: 20px auto;
-                padding: 20px;
-                background-color: #fff;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-            section {
-                margin-bottom: 30px;
-            }
+        section {
+            margin-bottom: 30px;
+        }
 
-            h2 {
-                color: blue;
-                margin-bottom: 15px;
-            }
+        h2 {
+            color: blue;
+            margin-bottom: 15px;
+        }
 
-            p {
-                margin-bottom: 15px;
-            }
+        p {
+            margin-bottom: 15px;
+        }
 
-            .btn {
-                display: inline-block;
-                padding: 10px 20px;
-                background-color: #004080;
-                color: #fff;
-                text-decoration: none;
-                border-radius: 5px;
-            }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #004080;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 
-            .btn:hover {
-                background-color: #0059b3;
-            }
+        .btn:hover {
+            background-color: #0059b3;
+        }
 
-            footer {
-                background-color: #003366;
-                color: #fff;
-                text-align: center;
-                padding: 25px 0;
-                margin-top: 30px;
-            }
+        footer {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 30px;
+        }
 
-            .contact-form {
-                background: #fff;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.1);
-                width: 300px;
-            }
+        .contact-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+        }
 
-            .contact-form input, .contact-form textarea {
-                width: 100%;
-                padding: 10px;
-                margin: 10px 0;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-            }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-            .contact-form button {
-                background-color: #4CAF50;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                width: 100%;
-            }
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
 
-            .contact-form button:hover {
-                background-color: #45a049;
-            }
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
 
-        </style>
+        /* Flexbox container for Subscriptions and Contact Us */
+        .contact-subscription {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
 
-        <script>
-            function openPopup() {
-                window.open("publications.html", "popupWindow", "width=800,height=600,scrollbars=yes,resizable=yes");
-            }
-        </script>
-    </head>
+        .contact-subscription > section {
+            flex: 1;
+        }
 
-    <body>
-        <header>
-            <h1>Power Grid Analyzer (PGAz)</h1>
-            <p>Innovated by Power System Dynamics, Stability, and Control (<strong>PSDSC</strong>) Laboratory</p>
-            <p>Building: ECC, Room: 407/2, King Mongkut's Institute of Technology Ladkrabang (<strong>KMITL</strong>), Bangkok 10520, Thailand</p>
-        </header>
+    </style>
 
-        <nav>
-            <a href="#About PGAz">About PGAz</a>
-            <a href="#Download">Download</a>
-            <a href="#Updates">Updates</a>
-            <a href="publications.html" target="_blank">Publications</a> <!-- Open publications in a new tab -->
-            <a href="our_team.html" target="_blank">Our Team</a>
-            <a href="team_activity.html" target="_blank">Team Activity</a>
-            <a href="acknowledgement.html" target="_blank">Acknowledgement</a>
-            <a href="#Subscriptions">Subscriptions</a>
-        </nav>
+    <script>
+        function openPopup() {
+            window.open("publications.html", "popupWindow", "width=800,height=600,scrollbars=yes,resizable=yes");
+        }
+    </script>
+</head>
 
-        <div class="container">
-            <!-- History Section -->
-            <section id="About PGAz">
-                <h2>About PGAz</h2>
-                <img src="./Figure/pgaz.jpg" alt="PGAz Overview">
+<body>
+    <header>
+        <h1>Power Grid Analyzer (PGAz)</h1>
+        <p>Innovated by Power System Dynamics, Stability, and Control (<strong>PSDSC</strong>) Laboratory</p>
+        <p>Building: ECC, Room: 407/2, King Mongkut's Institute of Technology Ladkrabang (<strong>KMITL</strong>), Bangkok 10520, Thailand</p>
+    </header>
 
-                <p>
-                    Power Grid Analyzer (<strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong>) is an open-source MATLAB-based toolbox developed by the <strong>PSDSC</strong> Laboratory at <strong>KMITL</strong>, Bangkok, Thailand. The project is led by <strong><i>Tossaporn Surinkaew</i></strong> with significant contributions from <strong><i>Sorasak Jaingeawkum</i></strong> and his team. 
-                </p>
+    <nav>
+        <a href="#About PGAz">About PGAz</a>
+        <a href="#Download">Download</a>
+        <a href="#Updates">Updates</a>
+        <a href="publications.html" target="_blank">Publications</a> <!-- Open publications in a new tab -->
+        <a href="our_team.html" target="_blank">Our Team</a>
+        <a href="team_activity.html" target="_blank">Team Activity</a>
+        <a href="acknowledgement.html" target="_blank">Acknowledgement</a>
+        <a href="#Subscriptions">Subscriptions</a>
+    </nav>
 
-                <p>
-                    <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers a flexible and modern solution to overcome the limitations of existing power system analysis software, which provides advanced modeling capabilities and dynamic updates. As an open-source MATLAB-based tool, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> provides an accessible platform designed for analyzing and controlling future power grids. Now, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers four core features:
-                </p>
+    <div class="container">
+        <!-- History Section -->
+        <section id="About PGAz">
+            <h2>About PGAz</h2>
+            <img src="./Figure/pgaz.jpg" alt="PGAz Overview">
 
-                <ol style="padding-left: 50px;">
-                    <li> Power Flow (PF) Analysis</li>
-                    <li> Optimal Power Flow (OPF) Analysis</li>
-                    <li> Small-Signal Stability Analysis (SSSA)</li>
-                    <li> Time-Domain Simulation (TS)</li>
-                </ol>
-                <br>
-                
-                <p>
-                  <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> will be released soon—stay tuned for updates!
-                </p>
+            <p>
+                Power Grid Analyzer (<strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong>) is an open-source MATLAB-based toolbox developed by the <strong>PSDSC</strong> Laboratory at <strong>KMITL</strong>, Bangkok, Thailand. The project is led by <strong><i>Tossaporn Surinkaew</i></strong> with significant contributions from <strong><i>Sorasak Jaingeawkum</i></strong> and his team. 
+            </p>
 
-            </section>
+            <p>
+                <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers a flexible and modern solution to overcome the limitations of existing power system analysis software, which provides advanced modeling capabilities and dynamic updates. As an open-source MATLAB-based tool, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> provides an accessible platform designed for analyzing and controlling future power grids. Now, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers four core features:
+            </p>
 
-            <!-- Download Section -->
-            <section id="Download">
-                <h2>Download PGAz</h2>
-                <p>
-                    The download for <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> will be available soon.
-                </p>
-                <br>
-                <div style="display: flex; gap: 30px;">
-                    <a href="#" class="btn">Download <strong>PGAz</strong> Now</a>
-                    <a href="#" class="btn">Get the User Guide</a>
-                </div>
-            </section>
+            <ol style="padding-left: 50px;">
+                <li> Power Flow (PF) Analysis</li>
+                <li> Optimal Power Flow (OPF) Analysis</li>
+                <li> Small-Signal Stability Analysis (SSSA)</li>
+                <li> Time-Domain Simulation (TS)</li>
+            </ol>
+            <br>
 
-            <!-- Update Section -->
-            <section id="Updates">
-                <h2>Updates</h2>
-                    <ul style="padding-left: 50px;">
-                        <li><span style="color: teal; font-weight: bold;">November 2024 </span> — <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong>, Part I includes two key features: PF and OPF. Please stay tuned for the release 🎉 😎</li>
-                        <li>End of October 2024 — Other PF and OPF bugs have been fixed ✅</li>
-                        <li>Mid of October 2024/2 — Verified PF and OPF against IEEE benchmark test cases successfully completed ✅ </li>
-                        <li>Mid of October 2024/1 — The IEEE benchmark data has been converted and used to validate our PF and OPF solutions</li>
-                        <li>October 2024 — Optimal Power Flow (OPF) was initially developed for <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong>, with both minor and major bug fixes implemented. Furthermore, ten fundamental constraints have been formulated for OPF problems, with alternative approaches provided for selecting these constraints</li>
-                        <li>September 2024 — Various solvers have been developed to address the PF problems, and they have been successfully implemented 😁</li>
-                        <li>August 2024 — Power Flow (PF) was initially developed for <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> </li>
-                        <li>End of July 2024 — Persistent errors and bugs occurred repeatedly, causing ongoing issues 😞 😕 🤔 </li>
-                        <li>Mid of July 2024 — Developing a Graphical User Interface (GUI) of <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> has been done 😁</li>
-                        <li>July 2024 — <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> project officially starts! 😃</li>
-                        <li>June 2024 — We named the toolbox <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong></li>
-                    </ul>
-            </section>
+            <p>
+                <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> will be released soon—stay tuned for updates!
+            </p>
 
-            <!-- Subscription Section -->
-            <section id="Subscriptions">
+        </section>
+
+        <!-- Download Section -->
+        <section id="Download">
+            <h2>Download PGAz</h2>
+            <p>
+                The download for <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> will be available soon.
+            </p>
+            <br>
+            <div style="display: flex; gap: 30px;">
+                <a href="#" class="btn">Download <strong>PGAz</strong> Now</a>
+                <a href="#" class="btn">Get the User Guide</a>
+            </div>
+        </section>
+
+        <!-- Update Section -->
+        <section id="Updates">
+            <h2>Updates</h2>
+            <ul style="padding-left: 50px;">
+                <li><span style="color: teal; font-weight: bold;">November 2024 </span> — <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong>, Part I includes two key features: PF and OPF. Please stay tuned for the release 🎉 😎</li>
+                <li>End of October 2024 — Other PF and OPF bugs have been fixed ✅</li>
+                <li>Mid of October 2024/2 — Verified PF and OPF against IEEE benchmark test cases successfully completed ✅ </li>
+                <li>Mid of October 2024/1 — The IEEE benchmark data has been converted and used to validate our PF and OPF solutions</li>
+                <li>October 2024 — Optimal Power Flow (OPF) was initially developed for <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong>, with both minor and major bug fixes implemented. Furthermore, ten fundamental constraints have been formulated for OPF problems, with alternative approaches provided for selecting these constraints</li>
+                <li>September 2024 — Various solvers have been developed to address the PF problems, and they have been successfully implemented 😁</li>
+                <li>August 2024 — Power Flow (PF) was initially developed for <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> </li>
+                <li>End of July 2024 — Persistent errors and bugs occurred repeatedly, causing ongoing issues 😞 😕 🤔 </li>
+                <li>Mid of July 2024 — Developing a Graphical User Interface (GUI) of <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> started here </li>
+                <li>July 2024 — The basic algorithm design was implemented successfully 😎</li>
+            </ul>
+        </section>
+
+        <!-- Subscription and Contact Us Section -->
+        <section id="Subscriptions" class="contact-subscription">
+            <section>
                 <h2>Subscriptions</h2>
-                <ul style="padding-left: 50px;">
-                    <li><strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> is supported by <strong>KMITL</strong>.</li>
-                    <li><strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> actively seeks to build collaborative research partnerships with other groups. For further subscription details or if you would like to collaborate, please contact us below</li>
-                </ul>
+                <li><strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> is supported by <strong>KMITL</strong></li>
+                <li><strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> actively seeks to build collaborative research partnerships with other groups. For further subscription details or if you would like to collaborate, please contact us </li>
             </section>
 
-            <!-- Contact Us Section -->
-            <section id="Contact">
-                <div class="contact-form">
-                    <h3>Contact Us</h3>
-                    <form
-                      action="https://formspree.io/f/xovqlqpb"
-                      method="POST"
-                    >
-                      <label>
-                        Your email:
-                        <input type="email" name="email">
-                      </label>
-                      <label>
-                        Your message:
-                        <textarea name="message"></textarea>
-                      </label>
-                      <!-- your other form fields go here -->
-                      <button type="submit">Send</button>
-                    </form>
-                </div>
+            <section>
+                <h2>Contact Us</h2>
+                <form class="contact-form" action="#" method="POST">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" required placeholder="Type your message here"></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
             </section>
-        </div>
+        </section>
 
-        <footer>
-            <p>&copy; 2024 PSDSC Laboratory | KMITL | Powered by PGAz</p>
-        </footer>
+    </div>
 
-    </body>
+    <footer>
+        <p>&copy; 2024 Power Grid Analyzer (PGAz). All rights reserved.</p>
+    </footer>
+
+</body>
 
 </html>

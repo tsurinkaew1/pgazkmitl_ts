@@ -188,44 +188,42 @@
         <section id="About PGAz">
             <h2>About PGAz</h2>
 
-            <!-- Two-column layout -->
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <!-- Two-column layout with improved responsiveness -->
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: flex-start;">
+                
                 <!-- Left column (Text and First Image) -->
-                <div style="flex: 1; max-width: 50%;">
-
-                    <!-- First Image: pgaz.jpg (image at the top of the left column) -->
-                    <img src="./Figure/pgaz.jpg" alt="PGAz Overview" style="width: 50%; max-width: 400px; margin-bottom: 20px;">
-                    <br><br>
+                <div style="flex: 1; max-width: 48%; box-sizing: border-box;">
+                    <!-- First Image: pgaz.jpg -->
+                    <img src="./Figure/pgaz.jpg" alt="PGAz Overview" style="width: 100%; max-width: 400px; margin-bottom: 20px;">
 
                     <p>
                         Power Grid Analyzer (<strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong>) is an open-source MATLAB-based toolbox developed by the <strong>PSDSC</strong> Laboratory at <strong>KMITL</strong>, Bangkok, Thailand. The project is led by <strong><i>Tossaporn Surinkaew</i></strong> with significant contributions from <strong><i>Sorasak Jaingeawkum</i></strong> and his team.
-                    </p><br>
-
-                    <p>
-                        <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers a flexible and modern solution to overcome the limitations of existing power system analysis software, which provides advanced modeling capabilities and dynamic updates. As an open-source MATLAB-based tool, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> provides an accessible platform designed for analyzing and controlling future power grids. Now, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers four core features:
                     </p>
 
-                    <ol style="padding-left: 50px;">
-                        <li> Power Flow (PF) Analysis</li>
-                        <li> Optimal Power Flow (OPF) Analysis</li>
-                        <li> Small-Signal Stability Analysis (SSSA)</li>
-                        <li> Time-Domain Simulation (TS)</li>
+                    <p>
+                        <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers a flexible and modern solution to overcome the limitations of existing power system analysis software, providing advanced modeling capabilities and dynamic updates. As an open-source MATLAB-based tool, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> provides an accessible platform designed for analyzing and controlling future power grids. Currently, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers four core features:
+                    </p>
+
+                    <ol style="padding-left: 20px;">
+                        <li>Power Flow (PF) Analysis</li>
+                        <li>Optimal Power Flow (OPF) Analysis</li>
+                        <li>Small-Signal Stability Analysis (SSSA)</li>
+                        <li>Time-Domain Simulation (TS)</li>
                     </ol>
-                    <br><br>
 
                     <p>
                         <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> will be released soon—stay tuned for updates!
                     </p>
-
                 </div>
 
                 <!-- Right column (Second Image) -->
-                <div style="flex: 1; margin-left: 60px; max-width: 50%; padding-left: 20px; position: relative; height: 400px;">
+                <div style="flex: 1; max-width: 48%; padding-left: 20px; padding-right: 20px; position: relative; height: 400px; box-sizing: border-box;">
                     <img id="draggable-img" src="./Figure/pgaz_gui.jpg" alt="PGAz GUI" 
-                         style="width: 90%; max-width: none; position: absolute; transition: transform 0.3s ease; left: 0; top: 0; cursor: grab;" 
+                         style="width: 100%; max-width: none; position: absolute; transition: transform 0.3s ease; left: 0; top: 0; cursor: grab;" 
                          onmouseover="this.style.transform = 'scale(1.3)';" onmouseout="this.style.transform = 'scale(1)';" 
                          onclick="this.style.transform = (this.style.transform === 'scale(1.3)') ? 'scale(1.3)' : 'scale(1.3)';">
                 </div>
+
             </div>
         </section>
 

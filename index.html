@@ -134,6 +134,28 @@
         .contact-subscription > section {
             flex: 1;
         }
+
+        @media screen and (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+        #About PGAz h2 {
+            font-size: 24px;
+            text-align: center;
+        }
+        /* Make images and text stack on smaller screens */
+        .container > div {
+            flex: 1 100%;  /* Make each section take full width */
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+        /* Ensure images do not overflow */
+        img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        }
     </style>
 
     <script>
@@ -162,7 +184,7 @@
     </nav>
 
     <div class="container">
-        <!-- History Section -->
+        <!-- About PGAz -->
         <section id="About PGAz">
             <h2>About PGAz</h2>
 

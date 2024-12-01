@@ -225,7 +225,6 @@
             </div>
         </section>
 
-        <!-- Download Section -->
         <section id="Download">
             <h2>Download PGAz</h2>
             <p>
@@ -237,18 +236,49 @@
                 <a href="#" class="btn">Get the User Guide</a>
             </div>
 
-            <br>
+            <br><br>
             <p>
-                Download for <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> demo here
+                Download for <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> demo here:
             </p>
 
             <div style="margin-top: 10px;">
-                <a href="https://github.com/tsurinkaew1/pgazkmitl_ts/tree/main/PGAz_V.Demo" 
+                <a id="pgaz-demo-btn" 
+                   href="https://github.com/tsurinkaew1/pgazkmitl_ts/tree/5536331e5edf7fec86a74eba4f6bc746cf5e519f/PGAz_V.Demo" 
                    class="btn" download>
                     Download <strong>PGAz</strong> demo
                 </a>
+                <p id="pgaz-demo-count" style="margin-top: 5px; font-size: 14px; color: #555; font-style: italic;"></p>
             </div>
         </section>
+
+        <script>
+            // Replace {owner}, {repo}, {release_version}, and {asset_id} with your GitHub details
+            const owner = "your-github-username";
+            const repo = "your-repository-name";
+            const assetId = "your-asset-id"; // Replace this with the actual asset ID
+
+            // Fetch download count for the PGAz demo file
+            fetch(`https://api.github.com/repos/${owner}/${repo}/releases/assets/${assetId}`, {
+                headers: {
+                    "Accept": "application/vnd.github.v3+json",
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.download_count !== undefined) {
+                        document.getElementById("pgaz-demo-count").innerText = 
+                            `Downloads: ${data.download_count}`;
+                    } else {
+                        document.getElementById("pgaz-demo-count").innerText = 
+                            "Unable to fetch download count.";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching download count:", error);
+                    document.getElementById("pgaz-demo-count").innerText = 
+                        "Error fetching download count.";
+                });
+        </script>
 
         <!-- Update Section -->
         <section id="Updates">

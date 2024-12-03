@@ -73,29 +73,38 @@
         }
 
         .btn {
-        background-color: #007BFF;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 16px;
-        text-align: center;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        display: inline-block;
-        transition: background-color 0.3s, transform 0.2s;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.2s;
+            }
+
+        /* Base button style */
+        .btn {
+            background-color: #003366; /* Dark blue */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none; /* For <a> elements */
+            display: inline-block;
+            text-align: center;
         }
 
         /* Hover effect */
         .btn:hover {
-            background-color: #0056b3;  /* Darker blue */
-            transform: scale(1.05);      /* Slightly enlarge the button */
-        }
-
-        /* Active effect (click effect) */
-        .btn:active {
-            background-color: #004085;  /* Even darker blue */
-            transform: scale(0.98);      /* Slightly shrink the button when clicked */
+            background-color: #0056b3; /* Brighter/darker blue on hover */
+            transform: scale(1.05); /* Slight grow effect */
         }
 
         footer {

@@ -51,7 +51,7 @@
         }
 
         .container {
-            max-width: 1250px;
+            max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
@@ -210,17 +210,17 @@
         <section id="About PGAz">
             <h2>About PGAz</h2>
 
-            <!-- Two-column layout with improved responsiveness -->
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: flex-start;">
+            <!-- Single-column layout -->
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start; align-items: flex-start;">
                 
-                <!-- Left column (Text and First Image) -->
-                <div style="flex: 1; max-width: 60%; box-sizing: border-box;">
+                <!-- Content (Text and First Image) -->
+                <div style="flex: 1; max-width: 100%; box-sizing: border-box;">
                     <!-- First Image: pgaz.jpg -->
                     <img src="./Figure/pgaz.jpg" alt="PGAz Overview" style="width: 30%; max-width: 300px; margin-bottom: 20px;">
 
                     <p>
                         Power Grid Analyzer (<strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong>) is an open-source MATLAB-based toolbox developed by the <strong>PSDSC</strong> Laboratory at <strong>KMITL</strong>, Bangkok, Thailand. The project is led by <strong><i>Tossaporn Surinkaew</i></strong> with significant contributions from <strong><i>Sorasak Jaingeawkum</i></strong> and his team.
-                    </p>
+                    </p><br> 
 
                     <p>
                         <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers a flexible and modern solution to overcome the limitations of existing power system analysis software, providing advanced modeling capabilities and dynamic updates. As an open-source MATLAB-based tool, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> provides an accessible platform designed for analyzing and controlling future power grids. Currently, <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> offers four core features:
@@ -232,20 +232,16 @@
                         <li>Small-Signal Stability Analysis (SSSA)</li>
                         <li>Time-Domain Simulation (TS)</li>
                     </ol>
-
-                    <br>
                 </div>
-
-                <!-- Right column (Second Image) -->
-                <div style="flex: 1; max-width: 40%; padding-left: 20px; padding-right: 20px; position: relative; height: 400px; box-sizing: border-box;">
-                    <img id="draggable-img" src="./Figure/pgaz_gui.jpg" alt="PGAz GUI" 
-                         style="width: 100%; max-width: none; position: absolute; transition: transform 0.3s ease; left: 0; top: 0; cursor: grab;" 
-                         onmouseover="this.style.transform = 'scale(1.1)';" onmouseout="this.style.transform = 'scale(1)';" 
-                         onclick="this.style.transform = (this.style.transform === 'scale(1.1)') ? 'scale(1.1)' : 'scale(1.1)';">
-                </div>
-
             </div>
+
+            <!-- Second Image (Centered) -->
+        <div style="margin-top: 20px; text-align: center;">
+            <img id="draggable-img" src="./Figure/pgaz_gui.jpg" alt="PGAz GUI" 
+                 style="width: 100%; max-width: none; cursor: grab;">
+        </div>
         </section>
+
 
         <!-- Download Section -->
         <section id="Download">

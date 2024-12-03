@@ -73,16 +73,29 @@
         }
 
         .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #004080;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        transition: background-color 0.3s, transform 0.2s;
         }
 
+        /* Hover effect */
         .btn:hover {
-            background-color: #0059b3;
+            background-color: #0056b3;  /* Darker blue */
+            transform: scale(1.05);      /* Slightly enlarge the button */
+        }
+
+        /* Active effect (click effect) */
+        .btn:active {
+            background-color: #004085;  /* Even darker blue */
+            transform: scale(0.98);      /* Slightly shrink the button when clicked */
         }
 
         footer {
@@ -250,12 +263,13 @@
             </div>
 
             <br>
+
         <!-- Cite Us Button -->
             <p>
                 If you use <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> in your academic works, research projects, publications, or professional endeavors, we kindly ask that you cite us. Proper citation helps acknowledge the contributions of the authors and supports continued development of the software. 🤗🙏💖 Thank you so much! 💖🙏🤗
             </p>
             <div style="margin-top: 10px;">
-                <button class="btn" style="background-color: #007BFF; color: white;" onclick="openCitationModal()">
+                 <button class="btn" style="background-color: #007BFF; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; border: none; cursor: pointer; transition: background-color 0.3s, transform 0.2s;" onclick="openCitationModal()">
                     Cite Us
                 </button>
             </div>
@@ -263,7 +277,9 @@
 
         <!-- Citation Modal -->
         <div id="citationModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background-color: white; padding: 20px; border: 2px solid #007BFF; border-radius: 8px; z-index: 1000; width: 50%;">
+            background-color: white; padding: 20px; border: 2px solid #007BFF; border-radius: 8px; z-index: 1000; width: 50%; height: auto;
+            overflow: auto; resize: both; max-width: 90%; max-height: 80%;">
+
             <h3 style="margin-top: 0;">How to Cite Us</h3>
             <br>
             <p><strong>APA Style:</strong><br>
@@ -276,15 +292,15 @@
             </p>
             <p><strong>BibTeX:</strong>
                 <pre style="background: #f4f4f4; padding: 10px; overflow-x: auto;">
-            @misc{jaingeawkum2024powergrid,
-              author       = {Sorasak Jaingeawkum and Tossaporn Surinkaew and Issarachai Ngamroo},
-              title        = {Power Grid Analyzer},
-              year         = {2024},
-              url          = {https://tsurinkaew1.github.io/pgazkmitl_ts/},
-            }
+        @misc{jaingeawkum2024powergrid,
+          author       = {Sorasak Jaingeawkum and Tossaporn Surinkaew and Issarachai Ngamroo},
+          title        = {Power Grid Analyzer},
+          year         = {2024},
+          url          = {https://tsurinkaew1.github.io/pgazkmitl_ts/},
+        }
                 </pre>
             </p>
-            <button class="btn" style="background-color: #FF5733; color: white;" onclick="closeCitationModal()">
+            <button class="btn" style="background-color: #007BFF; color: white;" onclick="closeCitationModal()">
                 Close
             </button>
         </div>
@@ -305,6 +321,7 @@
                 document.getElementById('modalBackground').style.display = 'none';
             }
         </script>
+
 
         <!-- Update Section -->
         <section id="Updates">

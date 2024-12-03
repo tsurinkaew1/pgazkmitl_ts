@@ -233,7 +233,7 @@
             </p>
 
             <div style="display: flex; gap: 30px;">
-                <a href="#" class="btn">Download <strong>PGAz</strong> </a>
+                <a href="#" class="btn">Download <strong>PGAz</strong></a>
                 <a href="#" class="btn">Get the User Guide</a>
             </div>
 
@@ -248,7 +248,63 @@
                     Download <strong>PGAz</strong> Demo
                 </a>
             </div>
+
+            <br>
+            <!-- Cite Us Button -->
+            <p>
+                If you use <strong style="color: black;">PGA</strong><strong style="color: orange;">z</strong> in your academic works, research projects, publications, or professional endeavors, we kindly ask that you cite us. Proper citation helps acknowledge the contributions of the authors and supports continued development of the software. Thank you.
+            </p>
+            <div style="margin-top: 10px;">
+                <button class="btn" style="background-color: #007BFF; color: white;" onclick="openCitationModal()">
+                    Cite Us
+                </button>
+            </div>
         </section>
+
+        <!-- Citation Modal -->
+        <div id="citationModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background-color: white; padding: 20px; border: 2px solid #007BFF; border-radius: 8px; z-index: 1000; width: 50%;">
+            <h3 style="margin-top: 0;">How to Cite Us</h3>
+            <p><strong>APA Style:</strong><br>
+                Jaingeawkum, S., Surinkaew, T., & Ngamroo, I. (2024). <em>Power Grid Analyzer</em>. Retrieved from 
+                <a href="https://tsurinkaew1.github.io/pgazkmitl_ts/">https://tsurinkaew1.github.io/pgazkmitl_ts/</a>
+            </p>
+            <p><strong>IEEE Style:</strong><br>
+                S. Jaingeawkum, T. Surinkaew, and I. Ngamroo, <em>Power Grid Analyzer</em>. [Online]. Available: 
+                https://tsurinkaew1.github.io/pgazkmitl_ts/. Accessed: Dec. 3, 2024.
+            </p>
+            <p><strong>BibTeX:</strong>
+                <pre style="background: #f4f4f4; padding: 10px; overflow-x: auto;">
+            @misc{jaingeawkum2024powergrid,
+              author       = {Sorasak Jaingeawkum and Tossaporn Surinkaew and Issarachai Ngamroo},
+              title        = {Power Grid Analyzer},
+              year         = {2024},
+              url          = {https://tsurinkaew1.github.io/pgazkmitl_ts/},
+            }
+                </pre>
+            </p>
+            <button class="btn" style="background-color: #FF5733; color: white;" onclick="closeCitationModal()">
+                Close
+            </button>
+        </div>
+
+        <!-- Modal Background -->
+        <div id="modalBackground" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background-color: rgba(0, 0, 0, 0.5); z-index: 999;" onclick="closeCitationModal()"></div>
+
+        <!-- JavaScript for Modal -->
+        <script>
+            function openCitationModal() {
+                document.getElementById('citationModal').style.display = 'block';
+                document.getElementById('modalBackground').style.display = 'block';
+            }
+
+            function closeCitationModal() {
+                document.getElementById('citationModal').style.display = 'none';
+                document.getElementById('modalBackground').style.display = 'none';
+            }
+        </script>
+
 
         <!-- Update Section -->
         <section id="Updates">

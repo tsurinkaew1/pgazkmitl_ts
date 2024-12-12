@@ -281,34 +281,63 @@
         </section>
 
         <!-- Citation Modal -->
-        <div id="citationModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background-color: white; padding: 20px; border: 2px solid #007BFF; border-radius: 8px; z-index: 1000; width: 50%; height: auto;
-            overflow: auto; resize: both; max-width: 90%; max-height: 80%;">
+        <div id="citationModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 2px solid #007BFF; border-radius: 8px; z-index: 1000; width: 50%; height: auto; overflow: auto; resize: both; max-width: 90%; max-height: 80%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
 
-            <h3 style="margin-top: 0;">How to Cite Us</h3>
+            <h3 style="margin-top: 0; color: #007BFF; text-align: center; font-size: 1.5em;">How to Cite Us</h3>
             <br>
             <p><strong>APA Style:</strong><br>
-                Jaingeawkum, S., Surinkaew, T., & Ngamroo, I. (2024). <em>Power Grid Analyzer</em>. Retrieved from 
-                <a href="https://tsurinkaew1.github.io/pgazkmitl_ts/">https://tsurinkaew1.github.io/pgazkmitl_ts/</a>
+                Jaingeawkum, S., Surinkaew, T., & Ngamroo, I. (2024). <em>Power Grid Analyzer</em>. Retrieved from
+                <a href="https://tsurinkaew1.github.io/pgazkmitl_ts/" style="color: #007BFF; text-decoration: none;" target="_blank">https://tsurinkaew1.github.io/pgazkmitl_ts/</a>
             </p>
             <p><strong>IEEE Style:</strong><br>
-                S. Jaingeawkum, T. Surinkaew, and I. Ngamroo, <em>Power Grid Analyzer</em>, 2024. [Online]. Available: 
-                https://tsurinkaew1.github.io/pgazkmitl_ts/. 
+                S. Jaingeawkum, T. Surinkaew, and I. Ngamroo, <em>Power Grid Analyzer</em>, 2024. [Online]. Available:
+                <a href="https://tsurinkaew1.github.io/pgazkmitl_ts/" style="color: #007BFF; text-decoration: none;" target="_blank">https://tsurinkaew1.github.io/pgazkmitl_ts/</a>
+            </p>
+            <p><strong>MLA Style:</strong><br>
+                Jaingeawkum, Sorasak, Tossaporn Surinkaew, and Issarachai Ngamroo. <em>Power Grid Analyzer</em>. 2024,
+                <a href="https://tsurinkaew1.github.io/pgazkmitl_ts/" style="color: #007BFF; text-decoration: none;" target="_blank">https://tsurinkaew1.github.io/pgazkmitl_ts/</a>.
+            </p>
+            <p><strong>Chicago Style:</strong><br>
+                Jaingeawkum, Sorasak, Tossaporn Surinkaew, and Issarachai Ngamroo. 2024. <em>Power Grid Analyzer</em>. Accessed [date].
+                <a href="https://tsurinkaew1.github.io/pgazkmitl_ts/" style="color: #007BFF; text-decoration: none;" target="_blank">https://tsurinkaew1.github.io/pgazkmitl_ts/</a>.
             </p>
             <p><strong>BibTeX:</strong>
-                <pre style="background: #f4f4f4; padding: 10px; overflow-x: auto;">
-                    @misc{jaingeawkum2024powergrid,
-                      author       = {Sorasak Jaingeawkum and Tossaporn Surinkaew and Issarachai Ngamroo},
-                      title        = {Power Grid Analyzer},
-                      year         = {2024},
-                      url          = {https://tsurinkaew1.github.io/pgazkmitl_ts/},
-                    }
-                </pre>
+                <div style="background: #f4f4f4; padding: 10px; border: 1px solid #ccc; border-radius: 5px; overflow-x: auto; position: relative;">
+                    <pre id="bibtexCode" style="margin: 0; font-family: monospace; white-space: pre-wrap;">
+        @misc{jaingeawkum2024powergrid,
+          author       = {Sorasak Jaingeawkum and Tossaporn Surinkaew and Issarachai Ngamroo},
+          title        = {Power Grid Analyzer},
+          year         = {2024},
+          url          = {https://tsurinkaew1.github.io/pgazkmitl_ts/},
+        }
+                    </pre>
+                    <div style="position: absolute; right: 10px; bottom: 10px;">
+                        <button class="btn" style="background-color: #007BFF; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; border: none; cursor: pointer; transition: background-color 0.3s, transform 0.2s;" onclick="navigator.clipboard.writeText(document.getElementById('bibtexCode').textContent).then(() => alert('BibTeX code copied to clipboard!')).catch(err => alert('Failed to copy BibTeX code: ' + err));">
+                            Copy
+                        </button>
+                    </div>
+                </div>
             </p>
-            <button class="btn" style="background-color: #007BFF; color: white;" onclick="closeCitationModal()">
-                Close
-            </button>
+            <br>
+            <div style="margin-top: 10px;">
+                <button class="btn" style="background-color: #007BFF; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; border: none; cursor: pointer; transition: background-color 0.3s, transform 0.2s;" onclick="closeCitationModal()">
+                    Close
+                </button>
+            </div>
         </div>
+
+        <script>
+        // Copy BibTeX code to clipboard
+        const copyButton = document.getElementById('copyButton');
+        copyButton.addEventListener('click', function () {
+            const bibtexCode = document.getElementById('bibtexCode').textContent;
+            navigator.clipboard.writeText(bibtexCode).then(() => {
+                alert('BibTeX code copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy BibTeX code: ' + err);
+            });
+        });
+        </script>
 
         <!-- Modal Background -->
         <div id="modalBackground" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 

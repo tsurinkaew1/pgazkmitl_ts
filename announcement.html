@@ -131,7 +131,9 @@
         <div class="popup-overlay" id="popup-overlay"></div>
         <div class="popup" id="popup">
             <h2>Bachelor's, Master's, and Ph.D. Positions in PSDSC Laboratory</h2>
-            <p>We are excited to announce opportunities for motivated students to join our <strong>PSDSC</strong> Laboratory for advanced research in cutting-edge areas of power systems and distributed systems control.</p>
+            <p>
+                We are excited to announce opportunities for motivated students to join our <strong>PSDSC</strong> Laboratory for advanced research in cutting-edge areas of power systems and distributed systems control.
+            </p>
             <br>
 
             <h3>Research Areas:</h3>
@@ -195,6 +197,20 @@
                     </ul>
             </ul>
             <br>
+
+            <h2>Contact Us</h2>
+                <form class="contact-form" action="https://formspree.io/f/xovqlqpb" method="POST" style="display: flex; flex-direction: column; gap: 10px;">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name" style="padding: 5px;">
+
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email" style="padding: 5px;">
+
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" required placeholder="Type your message here" style="padding: 5px;"></textarea>
+
+                    <button type="submit" style="padding: 10px; background-color: darkblue; color: white; border: none; cursor: pointer;">Send Message</button>
+                </form>
 
             <button class="btn-close" onclick="closePopup()">Close</button>
         </div>

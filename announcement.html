@@ -62,6 +62,17 @@
             }
 
             /* Popup Styles */
+            .popup-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh; /* Set to full viewport height */
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                display: none;
+            }
+
             .popup {
                 display: none;
                 position: fixed;
@@ -69,24 +80,14 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 background-color: #fff;
-                padding: 30px;
+                padding: 20px;
                 border-radius: 8px;
                 box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
                 z-index: 1000;
                 max-width: 800px;
-                width: 100%;
-                overflow-y: auto;
-            }
-
-            .popup-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 999;
-                display: none;
+                width: 90%;
+                max-height: 80%; /* Set max-height to fit in window */
+                overflow-y: auto; /* Allow scrolling if content overflows */
             }
 
             .popup .btn-close {
@@ -136,7 +137,7 @@
             </p>
             <br>
 
-            <h3>Research Areas:</h3>
+            <h3>Research Areas</h3>
             <ul>
                 <li>
                     Power system dynamics, stability, and control of modern power systems and microgrids
@@ -169,21 +170,21 @@
             </ul>
             <br>
 
-            <h3>Position Details:</h3>
+            <h3>Position Details</h3>
             <ul>
                 <li>Senior project</li>
                 <li>Full-time Master's and Ph.D. opportunities</li>
-                <li>You may further discuss the availability of full funding for tuition and living expenses</li>
+                <li>For Master degree and Ph.D., you may further discuss the availability of full funding for tuition and living expenses</li>
             </ul>
             <br>
 
-            <h3>Application Deadline:</h3>
+            <h3>Application Deadline</h3>
             <ul>
                 <li>Open until filled</li>
             </ul>
             <br>
 
-            <h3>How to Apply:</h3>
+            <h3>How to Apply</h3>
             <ul>
                 <li>Send your CV, academic transcripts, and a brief statement of research interests to:
                     <ul>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,128 +40,159 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             }
 
-            .news-section {
-                margin-bottom: 30px;
-            }
-
-            .news-section h2 {
-                color: blue;
-                margin-bottom: 15px;
-            }
-
-            ul {
-                margin-bottom: 20px;
+            .news-list {
+                list-style-type: decimal; /* Changes to numbered list */
                 padding-left: 20px;
             }
 
-            ul li {
-                margin-bottom: 10px;
-            }
-
-            .email {
-                color: #0056b3;
-                font-weight: bold;
-            }
-
-            .btn {
+            .news-list li {
                 background-color: #003366;
                 color: white;
-                padding: 10px 20px;
+                padding: 10px;
+                margin: 10px 0;
                 border-radius: 5px;
-                font-size: 16px;
-                text-align: center;
-                text-decoration: none;
-                border: none;
                 cursor: pointer;
-                display: inline-block;
+                font-size: 18px;
                 transition: background-color 0.3s, transform 0.2s;
             }
 
-            .btn:hover {
+            .news-list li:hover {
                 background-color: #0056b3;
-                transform: scale(1.05);
+                transform: scale(1.01);
             }
 
-            footer {
-                background-color: #003366;
-                color: #fff;
-                text-align: center;
-                padding: 25px 0;
-                margin-top: 30px;
+            /* Popup Styles */
+            .popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                max-width: 800px;
+                width: 100%;
+                overflow-y: auto;
             }
 
-            .back-link {
-                text-align: center;
-                margin-top: 20px;
+            .popup-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                display: none;
             }
 
-            .back-link a {
-                color: #003366;
-                font-size: 18px;
-                text-decoration: none;
-                font-weight: bold;
+            .popup .btn-close {
+                background-color: #007bff; /* Blue background */
+                color: white;
+                padding: 8px 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                border: none;
+                margin-top: 10px;
             }
 
-            .back-link a:hover {
-                color: #0056b3;
+            .popup .btn-close:hover {
+                background-color: #0056b3; /* Darker blue on hover */
             }
         </style>
     </head>
 
     <body>
-            <header>
-                <h1>News & Announcements</h1>
-            </header>
 
-            <div class="container news-section">
-                <h2> Master's and Ph.D. Positions Available in <strong>PSDSC</strong> Laboratory </h2>
-                <br>
+        <header>
+            <h1>News & Announcements</h1>
+        </header>
 
-                <p>We are excited to announce opportunities for motivated students to join our <strong>PSDSC</strong> Laboratory for advanced research in cutting-edge areas of power systems and distributed systems control.</p> <br>
+        <div class="container">
+            <ul class="news-list">
+                <li onclick="showPopup()">1. Master's and Ph.D. Positions Available in PSDSC Laboratory 📣</li>
+            </ul>
 
-                <h2>Research Areas</h2>
-                <ul>
-                    <li>Grid stability with distributed energy resources </li>
-                    <li>Intelligent frameworks for distributed controllable loads</li>
-                    <li>Renewable energy integration</li>
-                    <li>Advanced control strategies for modern power systems</li>
-                    <li>Developing open-source software</li>
-                </ul> <br>
-
-                <h2>Who Should Apply?</h2>
-                <ul>
-                    <li>Students passionate about power systems, control systems, or renewable energy</li>
-                    <li>Background in Electrical Engineering, Energy Systems, or a related field</li>
-                    <li>Strong analytical and programming skills (MATLAB, Python, or equivalent)</li>
-                </ul> <br>
-
-                <h2>Position Details</h2>
-                <ul>
-                    <li>Full-time Master's and Ph.D. opportunities</li>
-                    <li>Competitive funding for tuition and living expenses</li>
-                    <li>Access to state-of-the-art facilities and mentoring from renowned faculty</li>
-                </ul> <br>
-
-                <h2>Application Deadline</h2>
-                <p>Open until filled</p> <br>
-
-                <h2>How to Apply</h2>
-                <p>Send your CV, academic transcripts, and a brief statement of research interests to:
-                   <a href="mailto:tossaporn.su@kmitl.ac.th" style="color: #0056b3; font-weight: bold; text-decoration: none;">
-                       tossaporn.su@kmitl.ac.th
-                   </a> or <a href="mailto:issarachai.ng@kmitl.ac.th" style="color: #0056b3; font-weight: bold; text-decoration: none;">
-                       issarachai.ng@kmitl.ac.th
-                   </a>
-                </p>
-            </div>
-
+            <br>
             <div class="back-link">
                 <a href="index.html">← Back to Main Page</a>
             </div>
+        </div>
 
-            <footer>
-                <p>&copy; 2024 Power Grid Analyzer (PGAz). All rights reserved.</p>
-            </footer>
+        <!-- Popup Modal -->
+        <div class="popup-overlay" id="popup-overlay"></div>
+        <div class="popup" id="popup">
+            <h2>Master's and Ph.D. Positions in PSDSC Laboratory</h2>
+            <p>We are excited to announce opportunities for motivated students to join our <strong>PSDSC</strong> Laboratory for advanced research in cutting-edge areas of power systems and distributed systems control.</p>
+
+            <h3>Research Areas:</h3>
+            <ul>
+                <li>Grid stability with distributed energy resources</li>
+                <li>Intelligent frameworks for distributed controllable loads</li>
+                <li>Renewable energy integration</li>
+                <li>Advanced control strategies for modern power systems</li>
+                <li>Developing open-source software</li>
+            </ul>
+
+            <h3>Who Should Apply?</h3>
+            <ul>
+                <li>Students passionate about power systems, control systems, or renewable energy</li>
+                <li>Background in Electrical Engineering, Energy Systems, or a related field</li>
+                <li>Strong analytical and programming skills (MATLAB, Python, or equivalent)</li>
+            </ul>
+
+            <h3>Position Details:</h3>
+            <ul>
+                <li>Full-time Master's and Ph.D. opportunities</li>
+                <li>Competitive funding for tuition and living expenses</li>
+                <li>Access to state-of-the-art facilities and mentoring from renowned faculty</li>
+            </ul>
+
+            <h3>Application Deadline:</h3>
+            <ul>
+                <li>Open until filled</li>
+            </ul>
+
+            <h3>How to Apply:</h3>
+            <ul>
+                <li>Send your CV, academic transcripts, and a brief statement of research interests to:
+                    <a href="mailto:tossaporn.su@kmitl.ac.th" style="color: #0056b3;">tossaporn.su@kmitl.ac.th</a> or
+                    <a href="mailto:issarachai.ng@kmitl.ac.th" style="color: #0056b3;">issarachai.ng@kmitl.ac.th</a>
+                </li>
+            </ul>
+
+            <button class="btn-close" onclick="closePopup()">Close</button>
+        </div>
+
+        <script>
+            function showPopup() {
+                document.getElementById('popup').style.display = 'block';
+                document.getElementById('popup-overlay').style.display = 'block';
+            }
+
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('popup-overlay').style.display = 'none';
+            }
+        </script>
+
+        <style>
+            /* Indentation for bullet points */
+            .popup ul {
+                padding-left: 50px; /* Indent the entire list */
+            }
+
+            .popup ul li {
+                margin-bottom: 0px; /* Add space between items */
+            }
+        </style>
+
     </body>
-
 </html>
+
+
+

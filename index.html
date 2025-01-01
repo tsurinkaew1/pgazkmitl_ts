@@ -181,9 +181,17 @@
     </style>
 
     <script>
-        function openPopup() {
-            window.open("publications.html", "popupWindow", "width=800,height=600,scrollbars=yes,resizable=yes");
-        }
+        <script>
+            function showPopup() {
+                document.getElementById('popup').style.display = 'block';
+                document.getElementById('popup-overlay').style.display = 'block';
+            }
+
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('popup-overlay').style.display = 'none';
+            }
+        </script>
     </script>
 </head>
 

@@ -128,17 +128,12 @@
 
         <div class="container">
             <ol class="news-list">
-                <li onclick="showPopup()">
-                    📢 [Date 2-01-2025]  Bachelor’s Degree Senior Project in the PSDSC Research Center
+                <li onclick="showPopup('popup2')">
+                    <span style="color: red; font-weight: bold;">New!</span> 📢 [Date 14-02-2025] Available Project Topics for 4th-Year Electrical Engineering Projects (2025/2568)
                 </li>
-                <li onclick="showPopup()">
-                    📢 [Date 2-01-2025]  Master's Degree Positions in the PSDSC Research Center
-                </li>
-                <li onclick="showPopup()">
-                    📢 [Date 2-01-2025]  D.Eng./Ph.D. Positions Available in PSDSC Research Center
-                </li>
-                <li onclick="showPopup()">
-                    📢 [Date 2-01-2025]  Research Assistant Positions Available in PSDSC Research Center
+
+                <li onclick="showPopup('popup')">
+                    📢 [Date 2-01-2025]  Academic Positions in the PSDSC Research Center
                 </li>
             </ol>
 
@@ -150,8 +145,97 @@
 
         <!-- Popup Modal -->
         <div class="popup-overlay" id="popup-overlay"></div>
+
+        <!-- Popup 2 -->
+        <div class="popup" id="popup2">
+            <h2>Available Project Topics for 4th-Year Electrical Engineering Projects (2025/2568) at the <strong>PSDSC</strong> laboratory, KMITL, Thailand</h2>
+
+            <br>
+            <p>
+                We are excited to announce a range of challenging and innovative project topics available at the <strong>PSDSC</strong> laboratory. These topics cover cutting-edge areas of power systems, renewable energy integration, and advanced simulation techniques. Electrical Engineering students at <strong>KMITL</strong> are encouraged to explore these opportunities and contribute to the development of innovative technologies and solutions in the field of power system dynamics, stability, and control.
+            </p>
+
+            <br><hr style="border: 1px solid #000; width: 100%;"/><br>
+
+            <h3><u>Topic#1</u> <strong>Advanced Modeling of Flexible AC Transmission Systems (FACTS) for Renewable Energy Resources</strong> </h3>
+
+            <br>
+            <h3>Abstract</h3>
+
+            <p>
+                This project focuses on developing advanced models for flexible AC transmission systems (FACTS) to improve the integration of renewable energy (RE) into modern power grids. The project will begin with studying fundamental power flow, small-signal stability, and progress to time-domain simulations of the developed FACTS devices for RE. The model created in this project will be integrated with our open-source <span style="font-weight: bold; color: black;">PGA</span><span style="font-weight: bold; color: orange;">z</span> tool, which is used to analyze and simulate grid dynamics with renewable energy.
+            </p>
+
+            <br>
+            <p>The requirements for this project are as follows:</p>
+            <ul>
+                <li>A group of 2-4 students from Electrical Engineering (individual applicants are also welcome)</li>
+                <li>A strong understanding of power system dynamics and stability</li>
+                <li>Strong analytical and problem-solving skills</li>
+                <li>Proficiency in simulation tools such as MATLAB, Python, or equivalent platforms</li>
+            </ul>
+
+            <br>
+            <p>Expected Outputs:</p>
+            <ul>
+                <li>Complete thesis for this project (mandatory)</li>
+                <li>A conference paper in international/national conference (mandatory)</li>
+                <li>A publication in a Q1-Q2 level journal (if applicable)</li>
+            </ul>
+
+            <br><hr style="border: 1px solid #000; width: 100%;"/><br>
+
+            <h3><u>Topic#2</u> <strong>To be updated ...</strong> </h3>
+
+            <br><hr style="border: 1px solid #000; width: 100%;"/><br>
+
+            <h3><u>Topic#3</u> <strong>To be updated ...</strong> </h3>
+
+            <br><hr style="border: 1px solid #000; width: 100%;"/><br>
+
+            <h3><u>Topic#4</u> <strong>To be updated ...</strong> </h3>
+
+            <br><hr style="border: 1px solid #000; width: 100%;"/><br>
+
+            <br>
+            <h3><em>While project topics in the power system field are possible, please discuss them with our team to assess the feasibility of the project.</em></h3>
+
+            <br> <br>
+            <h3>How to Apply</h3>
+            <ul>
+                <li>Send your CV and a brief statement of research interests in each topic to:</li>
+                <ul>
+                    <li>
+                        Dr. Tossaporn Surinkaew: <a href="mailto:tossaporn.su@kmitl.ac.th" style="color: #0056b3;">tossaporn.su@kmitl.ac.th</a>
+                    </li>
+                    <li>
+                        Professor Dr. Issarachai Ngamroo: <a href="mailto:issarachai.ng@kmitl.ac.th" style="color: #0056b3;">issarachai.ng@kmitl.ac.th</a>
+                    </li>
+                </ul>
+            </ul>
+            <br>
+
+            <h2>Contact Us</h2>
+            <form class="contact-form" action="https://formspree.io/f/xovqlqpb" method="POST" style="display: flex; flex-direction: column; gap: 10px;">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name" style="padding: 5px;">
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email" style="padding: 5px;">
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" required placeholder="Type your message here" style="padding: 5px;"></textarea>
+
+                <button type="submit" style="padding: 10px; background-color: darkblue; color: white; border: none; cursor: pointer;">Send Message</button>
+            </form>
+            <br><br>
+
+            <button class="btn-close" onclick="closePopup()">Close</button>
+        </div>
+
+        <!-- Popup 1 -->
         <div class="popup" id="popup">
-            <h2>Bachelor's, Master's, D.Eng./Ph.D., and Research Assistant Positions in PSDSC Research Center</h2>
+            <h2>Academic Positions in PSDSC Research Center</h2>
             <p>
                 We are excited to announce opportunities for motivated students to join our <strong>PSDSC</strong> Research Center for advanced research in cutting-edge areas of power system dynamics, stability, and control.
             </p>
@@ -206,19 +290,16 @@
             <br>
 
             <h3>Funds and Scholarships</h3>
-                For Master degree, Ph.D., and research assistant, you may further discuss the availability of fully-funded for tuition and living expenses (available only for full-time students/researchers). Note that the fully-funded scholarship is competative.
+                For Master degree, Ph.D., and research assistant, you may further discuss the availability of fully-funded for tuition and living expenses (depending on position).
+            <br>
+            🔗 <a href="https://kris.kmitl.ac.th/research-administration/%e0%b8%97%e0%b8%b8%e0%b8%99%e0%b8%a7%e0%b8%b4%e0%b8%88%e0%b8%b1%e0%b8%a2%e0%b8%a0%e0%b8%b2%e0%b8%a2%e0%b9%83%e0%b8%99/" target="_blank" rel="noopener noreferrer">Click here for further information on funding and scholarships [KRIS]</a>
 
-                 <br> 🔗 <a href="https://kris.kmitl.ac.th/research-administration/%e0%b8%97%e0%b8%b8%e0%b8%99%e0%b8%a7%e0%b8%b4%e0%b8%88%e0%b8%b1%e0%b8%a2%e0%b8%a0%e0%b8%b2%e0%b8%a2%e0%b9%83%e0%b8%99/" target="_blank" rel="noopener noreferrer">Click here for further information on funding and scholarships [KRIS]</a>
+            <br>
+            🔗 <a href="https://www.eng.kmitl.ac.th/about-us/graduate-scholarship/" target="_blank" rel="noopener noreferrer">Click here for further information on funding and scholarships [School of Engineering]</a>
 
-                 <br> 🔗 <a href="https://www.eng.kmitl.ac.th/about-us/graduate-scholarship/" target="_blank" rel="noopener noreferrer">Click here for further information on funding and scholarships [School of Engineering]</a>
-
-                 <br> 🔗 <a href="https://nriis.go.th/www/" target="_blank" rel="noopener noreferrer">Click here for further information on funding and scholarships [NRCT]</a>
-            <br><br>
-
-            <h3>Application Deadline</h3>
-            <ul>
-                <li>Open until filled</li>
-            </ul>
+            <br>
+            🔗 <a href="https://nriis.go.th/www/" target="_blank" rel="noopener noreferrer">Click here for further information on funding and scholarships [NRCT]</a>
+            <br>
             <br>
 
             <h3>How to Apply</h3>
@@ -231,42 +312,34 @@
                         <li>
                             Professor Dr. Issarachai Ngamroo: <a href="mailto:issarachai.ng@kmitl.ac.th" style="color: #0056b3;">issarachai.ng@kmitl.ac.th</a>
                         </li>
-
                     </ul>
+                </li>
             </ul>
-            <br>
 
-            <h2>Contact Us</h2>
-                <form class="contact-form" action="https://formspree.io/f/xovqlqpb" method="POST" style="display: flex; flex-direction: column; gap: 10px;">
-                    <label for="name">Your Name:</label>
-                    <input type="text" id="name" name="name" required placeholder="Enter your name" style="padding: 5px;">
-
-                    <label for="email">Your Email:</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email" style="padding: 5px;">
-
-                    <label for="message">Your Message:</label>
-                    <textarea id="message" name="message" required placeholder="Type your message here" style="padding: 5px;"></textarea>
-
-                    <button type="submit" style="padding: 10px; background-color: darkblue; color: white; border: none; cursor: pointer;">Send Message</button>
-                </form> <br> <br>
-
+            <br><br>
             <button class="btn-close" onclick="closePopup()">Close</button>
         </div>
 
         <script>
-            function showPopup() {
-                document.getElementById('popup').style.display = 'block';
-                document.getElementById('popup-overlay').style.display = 'block';
+            function showPopup(popupId) {
+                const popup = document.getElementById(popupId);
+                const overlay = document.getElementById('popup-overlay');
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
             }
 
             function closePopup() {
-                document.getElementById('popup').style.display = 'none';
-                document.getElementById('popup-overlay').style.display = 'none';
+                const popups = document.querySelectorAll('.popup');
+                const overlay = document.getElementById('popup-overlay');
+                popups.forEach(popup => {
+                    popup.style.display = 'none';
+                });
+                overlay.style.display = 'none';
             }
         </script>
-
     </body>
 </html>
+
 
 
 

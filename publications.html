@@ -1,88 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Publications Page for Displaying Published Work">
-    <title>Publications</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Publications Page for Displaying Published Work">
+        <title>Publications</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f4f8;
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }
 
-        header {
-            background-color: #003366;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+            header {
+                background-color: #003366;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
 
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+            .container {
+                max-width: 1200px;
+                margin: 30px auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
 
-        h2 {
-            color: #003366;
-            margin-bottom: 15px;
-        }
+            h2 {
+                color: #003366;
+                margin-bottom: 15px;
+            }
 
-        .section {
-            margin-top: 30px;
-        }
+            .section {
+                margin-top: 30px;
+            }
 
-        .publication-list {
-            margin-top: 20px;
-        }
+            .publication-list {
+                margin-top: 20px;
+            }
 
-        .publication {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
+            .publication {
+                margin-bottom: 20px;
+                font-size: 1.1em;
+                line-height: 1.6;
+            }
 
-        .publication-title {
-            font-weight: bold;
-        }
+            .publication-title {
+                font-weight: bold;
+            }
 
-        .publication-details {
-            color: #555;
-        }
+            .publication-details {
+                color: #555;
+            }
 
-        .publication-authors, .publication-year, .publication-pages {color: #555;
-        }
+            .publication-authors, .publication-year, .publication-pages {color: #555;
+            }
 
-        .publication-journal {
-            color: blue;
-            font-style: italic;
-        }
+            .publication-journal {
+                color: blue;
+                font-style: italic;
+            }
 
-        .publication-number {
-            font-weight: bold;
-            color: #003366;
-        }
+            .publication-number {
+                font-weight: bold;
+                color: #003366;
+            }
 
-        .publication-publisher {
-            color: red;
-        }
+            .publication-publisher {
+                color: red;
+            }
 
-        .publication-section-title {
-            font-size: 1.3em;
-            margin-top: 20px;
-            color: #003366;
-        }
-    </style>
-</head>
-<body>
+            .publication-section-title {
+                font-size: 1.3em;
+                margin-top: 20px;
+                color: #003366;
+            }
+        </style>
+    </head>
+
+    <body>
 
     <header>
         <h1>Publications</h1>
@@ -742,12 +743,11 @@
         }
         `;
 
-        // Function to format author names as "First Last"
         function formatAuthors(authors) {
-            return authors.split(' and ').map(function(author) {
-                var nameParts = author.split(', ');
-                return nameParts[1] + ' ' + nameParts[0]; // Reverses from "Last, First" to "First Last"
-            }).join(', ');
+         return authors.split(' and ').map(function(author) {
+          var nameParts = author.split(', ');
+          return nameParts[1] + ' ' + nameParts[0]; // Reverses from "Last, First" to "First Last"
+         }).join(', ');
         }
 
         // Function to parse BibTeX data and display publications in IEEE format with numbering
@@ -763,7 +763,7 @@
             entries.forEach(function(entry, index) {
                 var publicationElement = document.createElement('div');
                 publicationElement.classList.add('publication');
-                
+
                 // Extract title, authors, journal, year, and pages from the BibTeX entry
                 var title = entry.match(/title=\{([^}]+)\}/)[1];
                 var authors = entry.match(/author=\{([^}]+)\}/)[1];

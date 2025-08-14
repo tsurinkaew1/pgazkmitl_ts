@@ -162,6 +162,12 @@
             flex: 1;
         }
 
+        .btn.disabled {
+                pointer-events: none; /* Disable clicking */
+                opacity: 0.5;         /* Make it look inactive */
+                cursor: default;      /* Change cursor */
+         }
+
         @media screen and (max-width: 768px) {
         .container {
             padding: 10px;
@@ -269,8 +275,8 @@
             </p>
 
             <div style="display: flex; gap: 30px;">
-                <a href="#" class="btn">Download <strong>PGAz</strong></a>
-                <a href="#" class="btn">Get the PGAz User Guide</a>
+                <a href="#" class="btn disabled">Download <strong>PGAz</strong></a>
+                <a href="#" class="btn disabled">Get the PGAz User Guide</a>
             </div>
 
             <br>
@@ -696,8 +702,8 @@
             </p>
 
             <div style="display: flex; gap: 30px;">
-                <a href="#" class="btn disabled" style="pointer-events: none; opacity: 0.5;">Download <strong>PyGAz</strong></a>
-                <a href="#" class="btn disabled" style="pointer-events: none; opacity: 0.5;">Get the PyGAz User Guide</a>
+                <a href="#" class="btn disabled">Download <strong>PyGAz</strong></a>
+                <a href="#" class="btn disabled">Get the PyGAz User Guide</a>
             </div>
             <br>
 

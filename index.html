@@ -322,7 +322,7 @@
                 <li>
                   <span style="color: teal; font-weight: bold;">28th October 2025</span> — The following major update are made:
                     <ul style="padding-left: 50pt;">
-                        <li>Update and fix the models and solvers in TS so it can handle large disturbances, such as faults, line trips, and breaker operations, by performing time integration on nonlinear DAEs (instead of the old method using linearized DAEs, which only worked for small disturbances). This provides more accurate time responses under large disturbances. Note the old model is still valid and can be optionally used for testing small disturbances, such as internal steps, forcing, or impulse excitations, with lower computational cost.</li>
+                        <li>Update and fix the models and solvers in TS so it can handle large disturbances, such as faults, line trips, and breaker operations, by performing time integration on nonlinear DAEs (instead of the old method using linearized DAEs, which only worked for small disturbances). TS now provides more accurate time responses under large disturbances. Note the old model is still valid and can be optionally used for testing small disturbances, such as internal steps, forcing, or impulse excitations, with lower computational cost.</li>
 
                         <li>We are wrapping up these updates with minor and major bug fixes, model/solver verification, and adding several new models in <strong>PGA<span style="color: orange;">z</span></strong> 1.1, a more stable version, coming soon.</li>
                     </ul>

@@ -320,7 +320,13 @@
             <ul style="padding-left: 50px;">
 
                 <li>
-                  <span style="color: teal; font-weight: bold;">28th October 2025</span> — We update, correct, and fix the models and solvers of TS, now it can handle large disturbances in the network—like faults, line trips, and breaker operations—by conducting time integration of a system of nonlinear DAEs. This replaces the old approach that used time integration of a system of linearized DAEs, which only worked well for small or minor disturbances. Note that the old model is still valid and can be used to test small disturbances, such as internal step, forcing, or impulse excitations, where the computational cost is low, this is optional for TS [<span style='color: crimson;'>Sorasak</span>]
+                  <span style="color: teal; font-weight: bold;">28th October 2025</span> — The following major update are made:
+                    <ul style="padding-left: 50pt;">
+                        <li>Update and fix the models and solvers in TS, enabling it to handle big disturbances—like faults, line trips, and breaker operations—by performing time integration on a system of nonlinear DAEs (replacing the old method using linearized DAEs, which only worked well for small disturbances). The old model is still valid and can be optionally used for testing small disturbances, such as internal steps, forcing, or impulse excitations, with lower computational cost.</li>
+
+                        <li>We are wrapping up these updates with minor and major bug fixes, and adding several new models in <strong>PGA<span style="color: orange;">z</span></strong> 1.1, a more stable version, coming soon.</li>
+                    </ul>
+                    [<span style='color: crimson;'>Sorasak</span>]
                 </li>
 
                 <li>

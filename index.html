@@ -284,17 +284,35 @@
             </p>
 
             <table cellspacing="0" cellpadding="10" style="border-collapse: collapse; text-align: left; width: auto; margin-left: 0;">
+
+                <!-- ===== PGAz Version 1.1 ===== -->
               <tr>
-                  <td style="padding-left: 40px; padding-bottom: 20px;">
-                    <a href="https://www.dropbox.com/scl/fo/to9es83zt55pn438x9jbk/AK4zryUHr4zvV3SFVf3NTAc?rlkey=z3xuddgpxwuglw533xer4l56a&st=kl3t13ck&dl=1"
-                       class="btn" id="download-link" download>
-                      Download <strong>PGAz</strong> version 1.0
-                    </a>
-                  </td>
-                  <td style="padding-left: 100px; padding-bottom: 20px;">
-                    Release Date: 29th September 2025
-                  </td>
-                </tr>
+                <td style="padding-left: 40px; padding-bottom: 20px;">
+                  <a href="https://www.dropbox.com/scl/fo/examplelinkforv11?rlkey=examplekey&st=example&dl=1"
+                     class="btn" id="download-link-v11" download>
+                    Download <strong>PGAz</strong> version 1.1
+                  </a>
+                </td>
+                <td style="padding-left: 100px; padding-bottom: 20px;">
+                  Release Date: 3rd November 2025
+                </td>
+              </tr>
+
+              <!-- ===== PGAz Version 1.0 ===== -->
+              <tr>
+                <td style="padding-left: 40px; padding-bottom: 20px;">
+                  <!-- Download link for PGAz v1.0 -->
+                  <a href="https://www.dropbox.com/scl/fo/to9es83zt55pn438x9jbk/AK4zryUHr4zvV3SFVf3NTAc?rlkey=z3xuddgpxwuglw533xer4l56a&st=kl3t13ck&dl=1"
+                     class="btn" id="download-link-v10" download>
+                    Download <strong>PGAz</strong> version 1.0
+                  </a>
+                </td>
+                <td style="padding-left: 100px; padding-bottom: 20px;">
+                  <!-- Release date for v1.0 -->
+                  Release Date: 29th September 2025
+                </td>
+              </tr>
+
             </table>
 
             <p>
@@ -320,7 +338,11 @@
             <ul style="padding-left: 50px;">
 
                 <li>
-                  <span style="color: teal; font-weight: bold;">28th October 2025</span> — The following major update are made:
+                  <span style="color: teal; font-weight: bold;">3rd November 2025</span> — <strong>PGA<span style="color: orange;">z</span> v1.1</strong> has been released! This update includes several bug fixes, improved solvers and algorithms, and the addition of new and more stable models. Nonlinear TS is not yet complete and requires further verification to improve its robustness and computational time. [<span style='color: crimson;'>Sorasak</span>]
+                </li>
+
+                <li>
+                  <span>28th October 2025</span> — The following major update are made:
                     <ul style="padding-left: 50pt;">
                         <li> Update and correct the models and solvers for TS so they can handle large disturbances accurately (such as faults, line trips, and breaker operations) by performing time integration on a system of nonlinear DAEs. This replaces the old model, which was based on linearized DAEs and therefore only accurate for small disturbances. With this update, TS can now return more accurate responses under large disturbances. However, TS is available for both linear and nonlinear DAEs with a trade-off between computational time and simulation accuracy </li>
 

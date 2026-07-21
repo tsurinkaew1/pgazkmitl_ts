@@ -5,107 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Team</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f4f8;
-        margin: 0;
-        padding: 0;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
 
-    header {
-            background-color: #003366;
-            color: white;
+        header {
+                background-color: #003366;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
+
+        .container {
+            max-width: 1300px;
+            margin: 20px auto;
             padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: darkblue;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .colored-text {
+            color: black;
+        }
+
+        .team, .sub-team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .sub-team {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns */
+            gap: 20px; /* Adds space between the grid items */
+            margin-top: 20px;
+            width: 100%;
+            justify-items: center; /* Centers the items within the grid */
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column; /* Image above description */
+            align-items: center;
+            width: 100%;
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            width: 100px; /* Same size for both team and sub-team images */
+            height: 100px; /* Ensure square format */
+            margin-bottom: 10px;
+        }
+
+        .team-member-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-member-info h2 {
+            margin: 0;
+            color: #003366;
+        }
+
+        .team-member-info p {
+            color: black;
+            margin: 10px 0;
             text-align: center;
         }
 
-    .container {
-        max-width: 1300px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        .team-member-info .role {
+            font-weight: bold;
+            color: blue;
+        }
 
-    h2 {
-        color: darkblue;
-    }
+        .advisor-info {
+            margin-top: 20px;
+            text-align: center;
+            color: #003366;
+        }
 
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .colored-text {
-        color: black;
-    }
-
-    .team, .sub-team {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .sub-team {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr); /* 4 columns */
-        gap: 20px; /* Adds space between the grid items */
-        margin-top: 20px;
-        width: 100%;
-        justify-items: center; /* Centers the items within the grid */
-    }
-
-    .team-member {
-        display: flex;
-        flex-direction: column; /* Image above description */
-        align-items: center;
-        width: 100%;
-    }
-
-    .team-member img {
-        border-radius: 50%;
-        width: 100px; /* Same size for both team and sub-team images */
-        height: 100px; /* Ensure square format */
-        margin-bottom: 10px;
-    }
-
-    .team-member-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .team-member-info h2 {
-        margin: 0;
-        color: #003366;
-    }
-
-    .team-member-info p {
-        color: black;
-        margin: 10px 0;
-        text-align: center;
-    }
-
-    .team-member-info .role {
-        font-weight: bold;
-        color: blue;
-    }
-
-    .advisor-info {
-        margin-top: 20px;
-        text-align: center;
-        color: #003366;
-    }
-
-    .vertical-scroll-container {
-      max-height: 570px; /* adjust as needed */
-      overflow-y: auto;
-      padding-right: 10px;
-      border: 1px solid #ccc;
-    }
-</style>
+        .vertical-scroll-container {
+          max-height: 570px; /* adjust as needed */
+          overflow-y: auto;
+          padding-right: 10px;
+          border: 1px solid #ccc;
+        }
+    </style>
 </head>
 
 <body>
@@ -323,65 +323,25 @@
                 </div>
             </div>
 
-            <!--Partnerships and Collaborations from Other Universities-->
+            <!-- Partnerships and Collaborations from Other Universities -->
             <h2 style="color: teal;">Partnerships and Collaborations from Other Universities</h2>
-            <div class="sub-team">
-                <div class="team-member">
-                    <img src="./Figure/Bevrani.jpg" alt="Prof. Hassan Bevrani">
-                    <div class="team-member-info">
-                        <p>Prof. Dr. Hassan Bevrani</p>
-                        <p>Ph.D., Electrical Engineering, Osaka University, Japan</p>
-                        <p><strong>Affiliation:</strong> Department of Electrical Engineering, Smart/Micro Grids Research Center (SMGRC), Faculty of Engineering, University of Kurdistan, Iran</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="./Figure/Yang.jpg" alt="Prof. Jun Yang">
-                    <div class="team-member-info">
-                        <p>Prof. Dr. Jun Yang</p>
-                        <p>Ph.D., Electrical Engineering, Huazhong University of Science and Technology, China</p>
-                        <p><strong>Affiliation:</strong> School of Electrical Engineering and Automation, Wuhan University, China</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="./Figure/Watanabe.jpg" alt="Prof. Watanabe">
-                    <div class="team-member-info">
-                        <p>Prof. Dr. Masayuki Watanabe</p>
-                        <p>Ph.D., Electrical Engineering, Osaka University, Japan</p>
-                        <p><strong>Affiliation:</strong> Kyushu Institute of Technology, Japan</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                <img src="./Figure/Kawabe.jpg" alt="Prof. Kawabe">
-                    <div class="team-member-info">
-                        <p>Assoc. Prof. Dr. Kenichi Kawabe</p>
-                        <p>Ph.D., Electrical Engineering, The University of Tokyo, Japan</p>
-                        <p><strong>Affiliation:</strong> Institute of Science Tokyo, Japan</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="./Figure/Yulianta.jpg" alt="Prof. Yulianta Siregar">
-                    <div class="team-member-info">
-                        <p>Prof. Dr. Yulianta Siregar</p>
-                        <p>Ph.D., Electrical Engineering, Kanazawa University, Japan</p>
-                        <p><strong>Affiliation:</strong> Faculty of Engineering, Universitas Sumatera Utara, Indonesia</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="./Figure/Thongchart.jpg" alt="Main Developer 1">
-                    <div class="team-member-info">
-                        <p>Asst. Prof. Dr. Thongchart Kerdphol</p>
-                        <p> Ph.D., Electrical and Electronic Engineering, Kyushu Institute of Technology, Japan </p>
-                        <p> <strong>Affiliation:</strong> Department of Electrical Engineering, Faculty of Engineering, Kasetsart University, Bangkok, Thailand.  </p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="./Figure/Watcharakorn.jpg" alt="Main Developer 2">
-                    <div class="team-member-info">
-                        <p>Asst. Prof. Dr. Watcharakorn Pinthurat</p>
-                        <p> Ph.D., Electrical Engineering, the University of New South Wales, NSW, Australia </p>
-                        <p> <strong>Affiliation:</strong> Department of Electrical Engineering, Rajamangala University of Technology Tawan-ok, Chanthaburi, Thailand  </p>
-                    </div>
-                </div>
+
+            <div>
+                <ol>
+                    <li>Prof. Dr. Hassan Bevrani, Ph.D., Electrical Engineering, Osaka University, Japan; Affiliation: Department of Electrical Engineering, Smart/Micro Grids Research Center (SMGRC), Faculty of Engineering, University of Kurdistan, Iran.</li>
+
+                    <li>Prof. Dr. Jun Yang, Ph.D., Electrical Engineering, Huazhong University of Science and Technology, China; Affiliation: School of Electrical Engineering and Automation, Wuhan University, China.</li>
+
+                    <li>Prof. Dr. Masayuki Watanabe, Ph.D., Electrical Engineering, Osaka University, Japan; Affiliation: Kyushu Institute of Technology, Japan.</li>
+
+                    <li>Assoc. Prof. Dr. Kenichi Kawabe, Ph.D., Electrical Engineering, The University of Tokyo, Japan; Affiliation: Institute of Science Tokyo, Japan.</li>
+
+                    <li>Prof. Dr. Yulianta Siregar, Ph.D., Electrical Engineering, Kanazawa University, Japan; Affiliation: Faculty of Engineering, Universitas Sumatera Utara, Indonesia.</li>
+
+                    <li>Asst. Prof. Dr. Thongchart Kerdphol, Ph.D., Electrical and Electronic Engineering, Kyushu Institute of Technology, Japan; Affiliation: Department of Electrical Engineering, Faculty of Engineering, Kasetsart University, Bangkok, Thailand.</li>
+
+                    <li>Asst. Prof. Dr. Watcharakorn Pinthurat, Ph.D., Electrical Engineering, The University of New South Wales, NSW, Australia; Affiliation: Department of Electrical Engineering, Rajamangala University of Technology Tawan-ok, Chanthaburi, Thailand.</li>
+                </ol>
             </div>
 
             <br><br>

@@ -1,4 +1,3 @@
-
 /* Privacy-conscious visitor counter widget
    Cloudflare Workers + D1
 */
@@ -255,4 +254,3 @@
 
   loadStats();
 })();
-

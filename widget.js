@@ -1,4 +1,3 @@
-
 /* Privacy-conscious visitor counter widget
    Cloudflare Workers + D1
 */
@@ -91,9 +90,13 @@
     }
 
     .vc-country-flag {
-        font-size: 22px;
-        line-height: 1;
-      }
+      width: 24px;
+      height: 18px;
+      object-fit: contain;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 2px;
+    }
 
     .vc-country-count {
       font-size: 14px;
@@ -129,7 +132,7 @@
 
   document.head.appendChild(style);
 
-  // Keep the existing visitor ID.
+  // Keep the existing browser visitor ID.
   let visitorId;
 
   try {
@@ -144,23 +147,6 @@
     }
   } catch {
     visitorId = `${Date.now()}-${Math.random().toString(16).slice(2)}-${Math.random().toString(16).slice(2)}`;
-  }
-
-  // Convert ISO country code into a flag emoji.
-  // Example: TH becomes 🇹🇭.
-  function countryFlag(countryCode) {
-    if (
-      typeof countryCode !== 'string' ||
-      !/^[A-Z]{2}$/.test(countryCode)
-    ) {
-      return '';
-    }
-
-    return String.fromCodePoint(
-      ...[...countryCode].map(
-        char => 127397 + char.charCodeAt(0)
-      )
-    );
   }
 
   const baseQuery = `?site=${encodeURIComponent(siteId)}`;
@@ -229,14 +215,24 @@
         return;
       }
 
-      // Display flags and counts only.
+      // Display flag images and counts only.
       for (const item of validCountries) {
         const entry = document.createElement('span');
         entry.className = 'vc-country';
 
-        const flag = document.createElement('span');
+        // Use an image instead of a Unicode flag emoji.
+        const flag = document.createElement('img');
         flag.className = 'vc-country-flag';
-        flag.textContent = countryFlag(item.country);
+        flag.src = `https://flagcdn.com/24x18/${item.country.toLowerCase()}.png`;
+        flag.alt = item.country;
+        flag.width = 24;
+        flag.height = 18;
+        flag.loading = 'lazy';
+
+        // Hide the flag image if it cannot be loaded.
+        flag.onerror = () => {
+          flag.style.display = 'none';
+        };
 
         const count = document.createElement('span');
         count.className = 'vc-country-count';
@@ -265,5 +261,3 @@
 
   loadStats();
 })();
-
-

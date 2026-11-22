@@ -47,10 +47,10 @@
 
     .vc-total,
     .vc-countries {
-      border: 1px solid #90caf9;
+      border: 1px solid;
       border-radius: 10px;
       padding: 12px 16px;
-      background: #ffffff;
+      background: transparent;
     }
 
     .vc-total {

@@ -1,4 +1,4 @@
-/* Privacy-conscious visitor counter + responsive 2D world map
+/* Privacy-conscious visitor counter + centered responsive 2D world map
    Cloudflare Workers + D1
 */
 (() => {
@@ -15,7 +15,11 @@
   const target = document.getElementById(targetId);
   if (!target) return;
 
-  // Visitor counter and full-width 2D map.
+  // Make the widget occupy the available parent width.
+  target.style.width = '100%';
+  target.style.boxSizing = 'border-box';
+
+  // Visitor counter and 2D map.
   target.innerHTML = `
     <div class="vc-box" role="group" aria-label="Website visitor statistics">
 
@@ -56,6 +60,7 @@
       gap: 12px;
       font: 14px/1.4 system-ui, sans-serif;
       color: #000000;
+      max-width: 100%;
     }
 
     .vc-total,
@@ -130,10 +135,14 @@
       font-size: 12px;
     }
 
-    /* Responsive full-width 2D world map. */
+    /* Center the map and use all available website width. */
     .vc-map-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      max-width: none;
+      max-width: 100%;
       margin: 24px auto 0;
       padding: 0;
       box-sizing: border-box;
@@ -142,9 +151,11 @@
     #vc-world-map {
       display: block;
       width: 100%;
-      max-width: none;
+      max-width: 100%;
       height: auto;
       aspect-ratio: 2 / 1;
+      margin-left: auto;
+      margin-right: auto;
       overflow: visible;
       background: transparent;
     }
@@ -162,11 +173,13 @@
       stroke-width: 1.8;
     }
 
+    /* Country abbreviation and count below the map. */
     .vc-map-info {
       min-height: 20px;
       margin-top: 8px;
       text-align: center;
       font: 14px/1.5 system-ui, sans-serif;
+      font-weight: 600;
       color: #000000;
     }
 
@@ -304,10 +317,10 @@
       const svg = d3.select(mapEl);
       svg.selectAll('*').remove();
 
-      // Flat Natural Earth projection.
+      // Flat Natural Earth projection, fitted to the full SVG.
       const projection = d3.geoNaturalEarth1()
         .fitExtent(
-          [[12, 12], [1188, 588]],
+          [[0, 0], [1200, 600]],
           {
             type: 'FeatureCollection',
             features
@@ -333,7 +346,7 @@
           `${feature.vcName} (${feature.vcCode}) — ${Number(feature.vcVisitors).toLocaleString()} visitors`
         );
 
-      // Click a country to display its visitor count.
+      // Click a country to display abbreviation and number only.
       svg
         .selectAll('.vc-map-country')
         .on('click', function(event, feature) {
@@ -342,7 +355,7 @@
           ).toLocaleString();
 
           mapInfoEl.textContent =
-            `${feature.vcName} (${feature.vcCode}): ${visitors} unique visitors`;
+            `${feature.vcCode} ${visitors}`;
 
           // Emphasize the selected country.
           svg

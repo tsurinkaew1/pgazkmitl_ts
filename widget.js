@@ -127,7 +127,7 @@
     .vc-globe-section {
       width: 100%;
       margin: 28px auto 0;
-      text-align: center;
+      text-align: left;
     }
 
     #vc-globe {

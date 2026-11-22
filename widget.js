@@ -1,4 +1,3 @@
-
 /* Privacy-conscious visitor counter + interactive 3D globe
    Cloudflare Workers + D1
 */
@@ -16,7 +15,7 @@
   const target = document.getElementById(targetId);
   if (!target) return;
 
-  // Display visitor counter and globe layout.
+  // Display visitor counter and centered globe.
   target.innerHTML = `
     <div class="vc-box" role="group" aria-label="Website visitor statistics">
 
@@ -35,17 +34,7 @@
     </div>
 
     <div class="vc-globe-section">
-      <h3 class="vc-globe-title">Visitors Around the World</h3>
-      <p class="vc-globe-description">
-        Countries with recorded visitors are highlighted.
-        Drag the globe to rotate it and click a country to see its visitors.
-      </p>
-
       <div id="vc-globe"></div>
-
-      <div id="vc-globe-status" class="vc-globe-status">
-        Loading 3D world map...
-      </div>
     </div>
   `;
 
@@ -134,29 +123,18 @@
       font-size: 12px;
     }
 
+    /* Center the 3D globe. */
     .vc-globe-section {
       width: 100%;
-      margin-top: 28px;
-      color: #000000;
-    }
-
-    .vc-globe-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin: 0 0 8px;
-      color: #000000;
-    }
-
-    .vc-globe-description {
-      font-size: 13px;
-      line-height: 1.5;
-      margin: 0 0 12px;
-      color: #000000;
+      margin: 28px auto 0;
+      text-align: center;
     }
 
     #vc-globe {
       width: 100%;
+      max-width: 700px;
       height: 420px;
+      margin: 0 auto;
       position: relative;
       overflow: hidden;
       cursor: grab;
@@ -166,20 +144,9 @@
       cursor: grabbing;
     }
 
-    .vc-globe-status {
-      font-size: 13px;
-      margin-top: 8px;
-      color: #000000;
-      min-height: 20px;
-    }
-
     @media (max-width: 600px) {
       #vc-globe {
         height: 320px;
-      }
-
-      .vc-globe-title {
-        font-size: 18px;
       }
     }
   `;
@@ -189,7 +156,6 @@
   const totalEl = target.querySelector('[data-vc="visitors"]');
   const countriesEl = target.querySelector('[data-vc="countries"]');
   const globeEl = target.querySelector('#vc-globe');
-  const globeStatus = target.querySelector('#vc-globe-status');
 
   // Keep the existing browser visitor ID.
   let visitorId;
@@ -238,7 +204,7 @@
     });
   }
 
-  // Escape text used in globe labels.
+  // Escape text for country labels.
   function escapeHTML(value) {
     return String(value).replace(/[&<>"']/g, character => ({
       '&': '&amp;',
@@ -252,11 +218,9 @@
   // Create the interactive 3D globe.
   async function initGlobe(countryStats = []) {
     try {
-      globeStatus.textContent = 'Loading 3D world map...';
-
       await loadGlobeLibrary();
 
-      // Get the country visitor counts.
+      // Get visitor counts by country.
       const countryCounts = {};
 
       for (const item of countryStats) {
@@ -306,7 +270,7 @@
           feature.vcCode !== 'AQ'
         );
 
-      // Create the globe.
+      // Create globe.
       const globe = new Globe(globeEl, {
         animateIn: true,
         waitForGlobeReady: true
@@ -321,14 +285,14 @@
         .atmosphereColor('#75baff')
         .atmosphereAltitude(0.18)
 
-        // Show country boundaries.
+        // Country boundaries.
         .polygonsData(features)
+
         .polygonAltitude(feature =>
           feature.vcVisitors > 0 ? 0.025 : 0.004
         )
 
-        // Green for countries without visitors.
-        // Gold for countries with recorded visitors.
+        // Highlight countries with visitors.
         .polygonCapColor(feature =>
           feature.vcVisitors > 0
             ? 'rgba(255, 170, 0, 0.78)'
@@ -341,12 +305,17 @@
             : 'rgba(70, 150, 90, 0.08)'
         )
 
-        .polygonStrokeColor(() => 'rgba(40, 80, 55, 0.65)')
+        .polygonStrokeColor(() =>
+          'rgba(40, 80, 55, 0.65)'
+        )
 
+        // Country information on hover.
         .polygonLabel(feature => {
           const name = escapeHTML(feature.vcName);
           const code = escapeHTML(feature.vcCode);
-          const visitors = Number(feature.vcVisitors).toLocaleString();
+          const visitors = Number(
+            feature.vcVisitors
+          ).toLocaleString();
 
           return `
             <div style="
@@ -362,35 +331,67 @@
           `;
         })
 
-        // Click a country to display its visitor count.
+        // Click a country to see visitor count.
         .onPolygonClick(feature => {
           if (!feature) return;
 
-          globeStatus.textContent =
-            `${feature.vcName} (${feature.vcCode}) — ` +
-            `${Number(feature.vcVisitors).toLocaleString()} unique visitors`;
+          const visitors = Number(
+            feature.vcVisitors
+          ).toLocaleString();
+
+          // Use a tooltip-style information display.
+          globeEl.setAttribute(
+            'aria-label',
+            `${feature.vcName}, ${feature.vcCode}: ${visitors} unique visitors`
+          );
+
+          const info = document.createElement('div');
+          info.textContent =
+            `${feature.vcName} (${feature.vcCode}): ${visitors} unique visitors`;
+
+          info.style.cssText = `
+            position: absolute;
+            left: 50%;
+            bottom: 12px;
+            transform: translateX(-50%);
+            background: white;
+            color: black;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 13px;
+            z-index: 5;
+            max-width: 90%;
+            text-align: center;
+          `;
+
+          const oldInfo = globeEl.querySelector('.vc-country-info');
+          if (oldInfo) oldInfo.remove();
+
+          info.className = 'vc-country-info';
+          globeEl.appendChild(info);
         })
 
         .polygonsTransitionDuration(800);
 
-      // Set the initial view.
+      // Initial globe position.
       globe.pointOfView({
         lat: 20,
         lng: 100,
         altitude: 2.3
       }, 1000);
 
-      // Enable automatic 360-degree rotation.
+      // Automatic 360-degree rotation.
       const controls = globe.controls();
+
       controls.autoRotate = true;
       controls.autoRotateSpeed = 0.45;
       controls.enableDamping = true;
       controls.dampingFactor = 0.08;
 
-      // Resize the globe for different screen sizes.
+      // Responsive globe sizing.
       function resizeGlobe() {
         const width = globeEl.clientWidth;
-
         if (!width) return;
 
         const height = window.innerWidth <= 600
@@ -410,19 +411,8 @@
         window.addEventListener('resize', resizeGlobe);
       }
 
-      const highlightedCount = features.filter(
-        feature => feature.vcVisitors > 0
-      ).length;
-
-      globeStatus.textContent =
-        `${highlightedCount} countries highlighted with recorded visitors. ` +
-        'Drag to rotate the globe or click a country for details.';
-
     } catch (error) {
       console.error('3D globe error:', error);
-
-      globeStatus.textContent =
-        'The 3D globe could not be loaded. Please check your internet connection and try again.';
     }
   }
 
@@ -490,7 +480,6 @@
           const entry = document.createElement('span');
           entry.className = 'vc-country';
 
-          // Country flag image.
           const flag = document.createElement('img');
           flag.className = 'vc-country-flag';
           flag.src =
@@ -504,12 +493,10 @@
             flag.style.display = 'none';
           };
 
-          // Country abbreviation.
           const code = document.createElement('span');
           code.className = 'vc-country-code';
           code.textContent = item.country;
 
-          // Visitor count.
           const count = document.createElement('span');
           count.className = 'vc-country-count';
           count.textContent = Number(
@@ -521,7 +508,7 @@
         }
       }
 
-      // Load globe using the same country statistics.
+      // Initialize globe with country statistics.
       initGlobe(validCountries);
 
     } catch (error) {
@@ -537,11 +524,10 @@
 
       countriesEl.appendChild(message);
 
-      // Still try to display the globe without visitor highlights.
+      // Try to load globe even if statistics are unavailable.
       initGlobe([]);
     }
   }
 
   loadStats();
 })();
-

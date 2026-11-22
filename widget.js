@@ -1,3 +1,4 @@
+
 /* Privacy-conscious visitor counter widget
    Cloudflare Workers + D1
 */
@@ -36,87 +37,87 @@
   const style = document.createElement('style');
 
   style.textContent = `
-  .vc-box {
-    display: inline-flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    gap: 12px;
-    font: 14px/1.4 system-ui, sans-serif;
-    color: #17365d;
-  }
+    .vc-box {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 12px;
+      font: 14px/1.4 system-ui, sans-serif;
+      color: #17365d;
+    }
 
-  .vc-total,
-  .vc-countries {
-    border: 1px solid #90caf9;
-    border-radius: 10px;
-    padding: 12px 16px;
-    background: #ffffff;
-  }
+    .vc-total,
+    .vc-countries {
+      border: 1px solid #90caf9;
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: #ffffff;
+    }
 
-  .vc-total {
-    min-width: 150px;
-  }
+    .vc-total {
+      min-width: 150px;
+    }
 
-  .vc-countries {
-    min-width: 170px;
-  }
+    .vc-countries {
+      min-width: 170px;
+    }
 
-  .vc-label {
-    display: block;
-    color: #315b83;
-    font-size: 12px;
-    margin-bottom: 7px;
-  }
+    .vc-label {
+      display: block;
+      color: #315b83;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
 
-  .vc-total strong {
-    display: block;
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.3;
-    color: #0d47a1;
-  }
+    .vc-total strong {
+      display: block;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #0d47a1;
+    }
 
-  .vc-country-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 14px;
-    align-items: center;
-  }
+    .vc-country-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      align-items: center;
+    }
 
-  .vc-country {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 17px;
-  }
+    .vc-country {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 17px;
+    }
 
-  .vc-country-flag {
-    width: 24px;
-    height: 18px;
-    object-fit: contain;
-    display: inline-block;
-    vertical-align: middle;
-    border-radius: 2px;
-  }
+    .vc-country-flag {
+      width: 24px;
+      height: 18px;
+      object-fit: contain;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 2px;
+    }
 
-  .vc-country-code {
-    font-size: 13px;
-    font-weight: 600;
-    color: #17365d;
-  }
+    .vc-country-code {
+      font-size: 13px;
+      font-weight: 600;
+      color: #17365d;
+    }
 
-  .vc-country-count {
-    font-size: 14px;
-    font-weight: 650;
-    font-variant-numeric: tabular-nums;
-    color: #0d47a1;
-  }
+    .vc-country-count {
+      font-size: 14px;
+      font-weight: 650;
+      font-variant-numeric: tabular-nums;
+      color: #0d47a1;
+    }
 
-  .vc-muted {
-    color: #52718f;
-    font-size: 12px;
-  }
-`;
+    .vc-muted {
+      color: #52718f;
+      font-size: 12px;
+    }
+  `;
 
   document.head.appendChild(style);
 
@@ -254,3 +255,4 @@
 
   loadStats();
 })();
+

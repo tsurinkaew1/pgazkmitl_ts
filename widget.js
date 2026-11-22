@@ -1,4 +1,4 @@
-/* Privacy-conscious visitor counter + interactive 3D globe
+/* Privacy-conscious visitor counter + responsive 2D world map
    Cloudflare Workers + D1
 */
 (() => {
@@ -15,7 +15,7 @@
   const target = document.getElementById(targetId);
   if (!target) return;
 
-  // Display visitor counter and centered globe.
+  // Visitor counter and full-width 2D map.
   target.innerHTML = `
     <div class="vc-box" role="group" aria-label="Website visitor statistics">
 
@@ -33,8 +33,15 @@
 
     </div>
 
-    <div class="vc-globe-section">
-      <div id="vc-globe"></div>
+    <div class="vc-map-section">
+      <svg
+        id="vc-world-map"
+        viewBox="0 0 1200 600"
+        role="img"
+        aria-label="Interactive world map showing visitors by country">
+      </svg>
+
+      <div id="vc-map-info" class="vc-map-info" aria-live="polite"></div>
     </div>
   `;
 
@@ -123,30 +130,58 @@
       font-size: 12px;
     }
 
-    /* Center the 3D globe. */
-    .vc-globe-section {
+    /* Responsive full-width 2D world map. */
+    .vc-map-section {
       width: 100%;
-      margin: 28px auto 0;
-      text-align: left;
+      max-width: none;
+      margin: 24px auto 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    #vc-globe {
+    #vc-world-map {
+      display: block;
       width: 100%;
-      max-width: 700px;
-      height: 420px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-      cursor: grab;
+      max-width: none;
+      height: auto;
+      aspect-ratio: 2 / 1;
+      overflow: visible;
+      background: transparent;
     }
 
-    #vc-globe:active {
-      cursor: grabbing;
+    .vc-map-country {
+      stroke: #ffffff;
+      stroke-width: 0.8;
+      stroke-linejoin: round;
+      cursor: pointer;
+      transition: fill 0.2s ease;
+    }
+
+    .vc-map-country:hover {
+      stroke: #222222;
+      stroke-width: 1.8;
+    }
+
+    .vc-map-info {
+      min-height: 20px;
+      margin-top: 8px;
+      text-align: center;
+      font: 14px/1.5 system-ui, sans-serif;
+      color: #000000;
     }
 
     @media (max-width: 600px) {
-      #vc-globe {
-        height: 320px;
+      .vc-map-section {
+        margin-top: 16px;
+      }
+
+      .vc-map-info {
+        font-size: 12px;
+      }
+
+      .vc-country-flag {
+        width: 20px;
+        height: 15px;
       }
     }
   `;
@@ -155,7 +190,8 @@
 
   const totalEl = target.querySelector('[data-vc="visitors"]');
   const countriesEl = target.querySelector('[data-vc="countries"]');
-  const globeEl = target.querySelector('#vc-globe');
+  const mapEl = target.querySelector('#vc-world-map');
+  const mapInfoEl = target.querySelector('#vc-map-info');
 
   // Keep the existing browser visitor ID.
   let visitorId;
@@ -176,15 +212,15 @@
 
   const baseQuery = `?site=${encodeURIComponent(siteId)}`;
 
-  // Load the 3D globe library.
-  function loadGlobeLibrary() {
+  // Load D3.js for the 2D map.
+  function loadD3() {
     return new Promise((resolve, reject) => {
-      if (window.Globe) {
+      if (window.d3) {
         resolve();
         return;
       }
 
-      const existingScript = document.getElementById('vc-globe-library');
+      const existingScript = document.getElementById('vc-d3-library');
 
       if (existingScript) {
         existingScript.addEventListener('load', resolve, { once: true });
@@ -193,8 +229,8 @@
       }
 
       const libraryScript = document.createElement('script');
-      libraryScript.id = 'vc-globe-library';
-      libraryScript.src = 'https://cdn.jsdelivr.net/npm/globe.gl';
+      libraryScript.id = 'vc-d3-library';
+      libraryScript.src = 'https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js';
       libraryScript.async = true;
 
       libraryScript.onload = resolve;
@@ -204,23 +240,14 @@
     });
   }
 
-  // Escape text for country labels.
-  function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, character => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    })[character]);
-  }
-
-  // Create the interactive 3D globe.
-  async function initGlobe(countryStats = []) {
+  // Create the 2D world map.
+  async function initWorldMap(countryStats = []) {
     try {
-      await loadGlobeLibrary();
+      await loadD3();
 
-      // Get visitor counts by country.
+      const d3 = window.d3;
+
+      // Build country visitor lookup.
       const countryCounts = {};
 
       for (const item of countryStats) {
@@ -238,22 +265,25 @@
       );
 
       if (!geoResponse.ok) {
-        throw new Error('Unable to load country map data');
+        throw new Error('Unable to load world map data');
       }
 
       const geoData = await geoResponse.json();
 
-      // Prepare country polygons.
+      // Attach ISO country codes and visitor counts.
       const features = geoData.features
         .map(feature => {
           const properties = feature.properties || {};
 
-          const countryCode =
-            properties.ISO_A2 ||
-            properties.ISO_A2_EH ||
-            '';
+          let code = String(
+            properties.ISO_A2 || ''
+          ).toUpperCase();
 
-          const code = String(countryCode).toUpperCase();
+          if (!/^[A-Z]{2}$/.test(code)) {
+            code = String(
+              properties.ISO_A2_EH || ''
+            ).toUpperCase();
+          }
 
           return {
             ...feature,
@@ -270,149 +300,67 @@
           feature.vcCode !== 'AQ'
         );
 
-      // Create globe.
-      const globe = new Globe(globeEl, {
-        animateIn: true,
-        waitForGlobeReady: true
-      });
+      // Create a clean SVG map.
+      const svg = d3.select(mapEl);
+      svg.selectAll('*').remove();
 
-      globe
-        .globeImageUrl(
-          'https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-day.jpg'
-        )
-        .backgroundColor('rgba(0,0,0,0)')
-        .showAtmosphere(true)
-        .atmosphereColor('#75baff')
-        .atmosphereAltitude(0.18)
+      // Flat Natural Earth projection.
+      const projection = d3.geoNaturalEarth1()
+        .fitExtent(
+          [[12, 12], [1188, 588]],
+          {
+            type: 'FeatureCollection',
+            features
+          }
+        );
 
-        // Country boundaries.
-        .polygonsData(features)
+      const path = d3.geoPath(projection);
 
-        .polygonAltitude(feature =>
-          feature.vcVisitors > 0 ? 0.025 : 0.004
-        )
-
-        // Highlight countries with visitors.
-        .polygonCapColor(feature =>
+      // Draw country shapes.
+      svg
+        .selectAll('.vc-map-country')
+        .data(features)
+        .join('path')
+        .attr('class', 'vc-map-country')
+        .attr('d', path)
+        .attr('fill', feature =>
           feature.vcVisitors > 0
-            ? 'rgba(255, 170, 0, 0.78)'
-            : 'rgba(70, 150, 90, 0.18)'
+            ? '#f5a623'
+            : '#e1e5e8'
         )
+        .append('title')
+        .text(feature =>
+          `${feature.vcName} (${feature.vcCode}) — ${Number(feature.vcVisitors).toLocaleString()} visitors`
+        );
 
-        .polygonSideColor(feature =>
-          feature.vcVisitors > 0
-            ? 'rgba(255, 170, 0, 0.45)'
-            : 'rgba(70, 150, 90, 0.08)'
-        )
-
-        .polygonStrokeColor(() =>
-          'rgba(40, 80, 55, 0.65)'
-        )
-
-        // Country information on hover.
-        .polygonLabel(feature => {
-          const name = escapeHTML(feature.vcName);
-          const code = escapeHTML(feature.vcCode);
+      // Click a country to display its visitor count.
+      svg
+        .selectAll('.vc-map-country')
+        .on('click', function(event, feature) {
           const visitors = Number(
             feature.vcVisitors
           ).toLocaleString();
 
-          return `
-            <div style="
-              background: white;
-              color: black;
-              padding: 9px 12px;
-              border-radius: 6px;
-              font-size: 13px;
-            ">
-              <strong>${name} (${code})</strong><br>
-              Visitors: ${visitors}
-            </div>
-          `;
-        })
-
-        // Click a country to see visitor count.
-        .onPolygonClick(feature => {
-          if (!feature) return;
-
-          const visitors = Number(
-            feature.vcVisitors
-          ).toLocaleString();
-
-          // Use a tooltip-style information display.
-          globeEl.setAttribute(
-            'aria-label',
-            `${feature.vcName}, ${feature.vcCode}: ${visitors} unique visitors`
-          );
-
-          const info = document.createElement('div');
-          info.textContent =
+          mapInfoEl.textContent =
             `${feature.vcName} (${feature.vcCode}): ${visitors} unique visitors`;
 
-          info.style.cssText = `
-            position: absolute;
-            left: 50%;
-            bottom: 12px;
-            transform: translateX(-50%);
-            background: white;
-            color: black;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 13px;
-            z-index: 5;
-            max-width: 90%;
-            text-align: center;
-          `;
+          // Emphasize the selected country.
+          svg
+            .selectAll('.vc-map-country')
+            .attr('stroke', '#ffffff')
+            .attr('stroke-width', 0.8);
 
-          const oldInfo = globeEl.querySelector('.vc-country-info');
-          if (oldInfo) oldInfo.remove();
+          d3.select(this)
+            .attr('stroke', '#000000')
+            .attr('stroke-width', 2);
+        });
 
-          info.className = 'vc-country-info';
-          globeEl.appendChild(info);
-        })
-
-        .polygonsTransitionDuration(800);
-
-      // Initial globe position.
-      globe.pointOfView({
-        lat: 20,
-        lng: 100,
-        altitude: 2.3
-      }, 1000);
-
-      // Automatic 360-degree rotation.
-      const controls = globe.controls();
-
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.45;
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.08;
-
-      // Responsive globe sizing.
-      function resizeGlobe() {
-        const width = globeEl.clientWidth;
-        if (!width) return;
-
-        const height = window.innerWidth <= 600
-          ? 320
-          : 420;
-
-        globe.width(width);
-        globe.height(height);
-      }
-
-      resizeGlobe();
-
-      if (window.ResizeObserver) {
-        const observer = new ResizeObserver(resizeGlobe);
-        observer.observe(globeEl);
-      } else {
-        window.addEventListener('resize', resizeGlobe);
-      }
+      // Start with no selected country.
+      mapInfoEl.textContent = '';
 
     } catch (error) {
-      console.error('3D globe error:', error);
+      console.error('2D world map error:', error);
+      mapInfoEl.textContent = 'Unable to load the world map.';
     }
   }
 
@@ -508,8 +456,8 @@
         }
       }
 
-      // Initialize globe with country statistics.
-      initGlobe(validCountries);
+      // Initialize map with country statistics.
+      initWorldMap(validCountries);
 
     } catch (error) {
       console.error('Visitor counter error:', error);
@@ -524,8 +472,8 @@
 
       countriesEl.appendChild(message);
 
-      // Try to load globe even if statistics are unavailable.
-      initGlobe([]);
+      // Still attempt to display the map.
+      initWorldMap([]);
     }
   }
 

@@ -1,6 +1,4 @@
-/* Privacy-conscious visitor counter + centered responsive 2D world map
-   Cloudflare Workers + D1
-*/
+/* Privacy-conscious visitor counter */
 (() => {
   const script = document.currentScript;
 
@@ -17,9 +15,10 @@
 
   // Make the widget occupy the available parent width.
   target.style.width = '100%';
+  target.style.maxWidth = '100%';
   target.style.boxSizing = 'border-box';
 
-  // Visitor counter and 2D map.
+  // Visitor counter and world map.
   target.innerHTML = `
     <div class="vc-box" role="group" aria-label="Website visitor statistics">
 
@@ -45,7 +44,7 @@
         aria-label="Interactive world map showing visitors by country">
       </svg>
 
-      <div id="vc-map-info" class="vc-map-info" aria-live="polite"></div>
+      <div id="vc-map-tooltip" class="vc-map-tooltip"></div>
     </div>
   `;
 
@@ -61,6 +60,7 @@
       font: 14px/1.4 system-ui, sans-serif;
       color: #000000;
       max-width: 100%;
+      box-sizing: border-box;
     }
 
     .vc-total,
@@ -135,20 +135,21 @@
       font-size: 12px;
     }
 
-    /* Map */
+    /* Map container */
     .vc-map-section {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 100%;
       max-width: 100%;
-      margin: 0px auto 0;
+      margin: 0 auto;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Map size */
+    /* Desktop map size */
     #vc-world-map {
       display: block;
       width: 200%;
@@ -161,12 +162,13 @@
       background: transparent;
     }
 
+    /* Country appearance */
     .vc-map-country {
       stroke: #ffffff;
       stroke-width: 0.8;
       stroke-linejoin: round;
       cursor: pointer;
-      transition: fill 0.2s ease;
+      transition: fill 0.2s ease, stroke 0.15s ease;
     }
 
     .vc-map-country:hover {
@@ -174,28 +176,77 @@
       stroke-width: 1.8;
     }
 
-    /* Country abbreviation and count below the map. */
-    .vc-map-info {
-      min-height: 20px;
-      margin-top: 8px;
-      text-align: center;
-      font: 14px/1.5 system-ui, sans-serif;
+    /* Popup above hovered or tapped country */
+    .vc-map-tooltip {
+      display: none;
+      position: fixed;
+      z-index: 99999;
+      transform: translate(-50%, -100%);
+      padding: 7px 12px;
+      border-radius: 6px;
+      background: #222222;
+      color: #ffffff;
+      font: 13px/1.4 system-ui, sans-serif;
       font-weight: 600;
-      color: #000000;
+      white-space: nowrap;
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
+    /* Smartphone responsive layout */
     @media (max-width: 600px) {
-      .vc-map-section {
-        margin-top: 16px;
+
+      .vc-box {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        gap: 10px;
+        box-sizing: border-box;
       }
 
-      .vc-map-info {
-        font-size: 12px;
+      .vc-total,
+      .vc-countries {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+
+      .vc-total strong {
+        font-size: 22px;
+      }
+
+      .vc-country-list {
+        gap: 8px 12px;
+      }
+
+      .vc-country {
+        font-size: 15px;
       }
 
       .vc-country-flag {
         width: 20px;
         height: 15px;
+      }
+
+      .vc-map-section {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 12px;
+        overflow: hidden;
+      }
+
+      #vc-world-map {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto;
+        aspect-ratio: 2 / 1;
+        margin: 0 auto;
+      }
+
+      .vc-map-tooltip {
+        font-size: 12px;
+        padding: 6px 10px;
       }
     }
   `;
@@ -205,7 +256,7 @@
   const totalEl = target.querySelector('[data-vc="visitors"]');
   const countriesEl = target.querySelector('[data-vc="countries"]');
   const mapEl = target.querySelector('#vc-world-map');
-  const mapInfoEl = target.querySelector('#vc-map-info');
+  const tooltip = target.querySelector('#vc-map-tooltip');
 
   // Keep the existing browser visitor ID.
   let visitorId;
@@ -237,8 +288,12 @@
       const existingScript = document.getElementById('vc-d3-library');
 
       if (existingScript) {
-        existingScript.addEventListener('load', resolve, { once: true });
-        existingScript.addEventListener('error', reject, { once: true });
+        if (existingScript.dataset.loaded === 'true') {
+          resolve();
+        } else {
+          existingScript.addEventListener('load', resolve, { once: true });
+          existingScript.addEventListener('error', reject, { once: true });
+        }
         return;
       }
 
@@ -247,7 +302,11 @@
       libraryScript.src = 'https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js';
       libraryScript.async = true;
 
-      libraryScript.onload = resolve;
+      libraryScript.onload = () => {
+        libraryScript.dataset.loaded = 'true';
+        resolve();
+      };
+
       libraryScript.onerror = reject;
 
       document.head.appendChild(libraryScript);
@@ -318,7 +377,7 @@
       const svg = d3.select(mapEl);
       svg.selectAll('*').remove();
 
-      // Flat Natural Earth projection, fitted to the full SVG.
+      // Fit the world projection to the SVG.
       const projection = d3.geoNaturalEarth1()
         .fitExtent(
           [[0, 0], [1200, 600]],
@@ -330,8 +389,8 @@
 
       const path = d3.geoPath(projection);
 
-      // Draw country shapes.
-      svg
+      // Draw countries.
+      const countries = svg
         .selectAll('.vc-map-country')
         .data(features)
         .join('path')
@@ -339,42 +398,101 @@
         .attr('d', path)
         .attr('fill', feature =>
           feature.vcVisitors > 0
-            ? '#f5a623'
+            ? '#2563eb'
             : '#e1e5e8'
-        )
+        );
+
+      // Country name and visitor count on native SVG title.
+      countries
         .append('title')
         .text(feature =>
           `${feature.vcName} (${feature.vcCode}) — ${Number(feature.vcVisitors).toLocaleString()} visitors`
         );
 
-      // Click a country to display abbreviation and number only.
-      svg
-        .selectAll('.vc-map-country')
-        .on('click', function(event, feature) {
-          const visitors = Number(
-            feature.vcVisitors
-          ).toLocaleString();
+      // Show country information on hover or tap.
+      function showTooltip(event, feature) {
+        const visitors = Number(
+          feature.vcVisitors
+        ).toLocaleString();
 
-          mapInfoEl.textContent =
-            `${feature.vcCode} ${visitors}`;
+        tooltip.textContent =
+          `${feature.vcCode} ${visitors}`;
 
-          // Emphasize the selected country.
-          svg
-            .selectAll('.vc-map-country')
-            .attr('stroke', '#ffffff')
-            .attr('stroke-width', 0.8);
+        tooltip.style.display = 'block';
+
+        // Keep popup inside the screen horizontally.
+        const popupWidth = tooltip.offsetWidth;
+        const halfWidth = popupWidth / 2;
+
+        const x = Math.max(
+          halfWidth + 5,
+          Math.min(
+            event.clientX,
+            window.innerWidth - halfWidth - 5
+          )
+        );
+
+        // Position popup above the pointer.
+        const y = Math.max(tooltip.offsetHeight + 8, event.clientY - 12);
+
+        tooltip.style.left = `${x}px`;
+        tooltip.style.top = `${y}px`;
+      }
+
+      countries
+        .on('pointerenter', function(event, feature) {
+          showTooltip(event, feature);
 
           d3.select(this)
             .attr('stroke', '#000000')
-            .attr('stroke-width', 2);
+            .attr('stroke-width', 1.8);
+        })
+
+        .on('pointermove', function(event, feature) {
+          // Follow the mouse on desktop.
+          if (event.pointerType !== 'touch') {
+            showTooltip(event, feature);
+          }
+        })
+
+        .on('pointerdown', function(event, feature) {
+          // On touchscreen, tapping a country displays its popup.
+          if (event.pointerType === 'touch') {
+            showTooltip(event, feature);
+
+            d3.select(this)
+              .attr('stroke', '#000000')
+              .attr('stroke-width', 1.8);
+          }
+        })
+
+        .on('pointerleave', function(event) {
+          // Do not immediately hide the popup on touchscreens.
+          if (event.pointerType !== 'touch') {
+            tooltip.style.display = 'none';
+
+            d3.select(this)
+              .attr('stroke', '#ffffff')
+              .attr('stroke-width', 0.8);
+          }
         });
 
-      // Start with no selected country.
-      mapInfoEl.textContent = '';
+      // Tapping elsewhere on the map dismisses the popup on touchscreens.
+      svg.on('pointerdown', function(event) {
+        if (event.pointerType === 'touch' &&
+            event.target === mapEl) {
+          tooltip.style.display = 'none';
+
+          countries
+            .attr('stroke', '#ffffff')
+            .attr('stroke-width', 0.8);
+        }
+      });
 
     } catch (error) {
       console.error('2D world map error:', error);
-      mapInfoEl.textContent = 'Unable to load the world map.';
+      tooltip.textContent = 'Unable to load the world map.';
+      tooltip.style.display = 'block';
     }
   }
 

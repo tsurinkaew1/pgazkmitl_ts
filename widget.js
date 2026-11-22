@@ -152,7 +152,7 @@
     /* Desktop map size */
     #vc-world-map {
       display: block;
-      width: 200%;
+      width: 210%;
       max-width: none;
       height: auto;
       aspect-ratio: 2 / 1;

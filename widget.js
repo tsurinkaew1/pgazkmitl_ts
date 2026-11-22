@@ -42,15 +42,15 @@
       align-items: stretch;
       gap: 12px;
       font: 14px/1.4 system-ui, sans-serif;
-      color: #202124;
+      color: #17365d;
     }
 
     .vc-total,
     .vc-countries {
-      border: 1px solid #ddd;
+      border: 1px solid #90caf9;
       border-radius: 10px;
       padding: 12px 16px;
-      background: #fff;
+      background: #e3f2fd;
     }
 
     .vc-total {
@@ -63,7 +63,7 @@
 
     .vc-label {
       display: block;
-      color: #666;
+      color: #315b83;
       font-size: 12px;
       margin-bottom: 7px;
     }
@@ -73,6 +73,7 @@
       font-size: 24px;
       font-weight: 700;
       line-height: 1.3;
+      color: #0d47a1;
     }
 
     .vc-country-list {
@@ -101,37 +102,41 @@
     .vc-country-code {
       font-size: 13px;
       font-weight: 600;
-      color: inherit;
+      color: #17365d;
     }
 
     .vc-country-count {
       font-size: 14px;
       font-weight: 650;
       font-variant-numeric: tabular-nums;
+      color: #0d47a1;
     }
 
     .vc-muted {
-      color: #777;
+      color: #52718f;
       font-size: 12px;
     }
 
     @media (prefers-color-scheme: dark) {
-      .vc-box {
-        color: #eee;
-      }
-
       .vc-total,
       .vc-countries {
-        background: #202124;
-        border-color: #555;
+        background: #17365d;
+        border-color: #3976ad;
       }
 
-      .vc-label {
-        color: #bbb;
+      .vc-box {
+        color: #ffffff;
       }
 
+      .vc-label,
       .vc-muted {
-        color: #aaa;
+        color: #d1e7ff;
+      }
+
+      .vc-total strong,
+      .vc-country-code,
+      .vc-country-count {
+        color: #ffffff;
       }
     }
   `;

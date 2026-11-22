@@ -151,7 +151,7 @@
     /* Map size */
     #vc-world-map {
       display: block;
-      width: 120%;
+      width: 150%;
       max-width: none;
       height: auto;
       aspect-ratio: 2 / 1;

@@ -143,7 +143,7 @@
       justify-content: center;
       width: 100%;
       max-width: 100%;
-      margin: 24px auto 0;
+      margin: 0px auto 0;
       padding: 0;
       box-sizing: border-box;
     }
@@ -151,7 +151,7 @@
     /* Map size */
     #vc-world-map {
       display: block;
-      width: 250%;
+      width: 200%;
       max-width: none;
       height: auto;
       aspect-ratio: 2 / 1;

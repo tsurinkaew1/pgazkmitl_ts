@@ -1,4 +1,6 @@
-/* Embed this script. Configure API_BASE and SITE_ID below, or via data attributes. */
+from pathlib import Path
+
+code = r"""/* Embed this script. Configure API_BASE and SITE_ID via data attributes. */
 (() => {
   const script = document.currentScript;
   const apiBase = (script?.dataset.api || 'https://YOUR-WORKER.workers.dev').replace(/\/$/, '');
@@ -9,46 +11,130 @@
 
   target.innerHTML = `
     <div class="vc-box" role="group" aria-label="Website visitor statistics">
-      <div class="vc-stat"><span class="vc-label">Total views</span><strong data-vc="views">—</strong></div>
-      <div class="vc-stat"><span class="vc-label">Unique visitors</span><strong data-vc="visitors">—</strong></div>
-      <div class="vc-stat"><span class="vc-label">Today</span><strong data-vc="today">—</strong></div>
+      <div class="vc-total">
+        <span class="vc-label">Total unique visitors</span>
+        <strong data-vc="visitors">—</strong>
+      </div>
+      <div class="vc-countries">
+        <span class="vc-label">Visitors by country</span>
+        <div class="vc-country-list" data-vc="countries">
+          <span class="vc-muted">Loading…</span>
+        </div>
+      </div>
     </div>`;
 
   const style = document.createElement('style');
   style.textContent = `
-    .vc-box{display:inline-flex;flex-wrap:wrap;gap:12px;font:14px/1.4 system-ui,sans-serif;color:#202124}
-    .vc-stat{min-width:100px;border:1px solid #ddd;border-radius:10px;padding:12px 16px;background:#fff}
-    .vc-label{display:block;color:#666;font-size:12px;margin-bottom:4px}
-    .vc-stat strong{font-size:20px;font-weight:650}
-    @media(prefers-color-scheme:dark){.vc-box{color:#eee}.vc-stat{background:#202124;border-color:#555}.vc-label{color:#bbb}}
+    .vc-box{display:inline-flex;flex-wrap:wrap;align-items:stretch;gap:12px;font:14px/1.4 system-ui,sans-serif;color:#202124}
+    .vc-total,.vc-countries{border:1px solid #ddd;border-radius:10px;padding:12px 16px;background:#fff}
+    .vc-total{min-width:150px}
+    .vc-countries{min-width:170px}
+    .vc-label{display:block;color:#666;font-size:12px;margin-bottom:7px}
+    .vc-total strong{display:block;font-size:24px;font-weight:700;line-height:1.3}
+    .vc-country-list{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+    .vc-country{display:inline-flex;align-items:center;gap:5px;font-size:17px}
+    .vc-country-flag{font-size:22px;line-height:1}
+    .vc-country-count{font-size:14px;font-weight:650;font-variant-numeric:tabular-nums}
+    .vc-muted{color:#777;font-size:12px}
+    @media(prefers-color-scheme:dark){
+      .vc-box{color:#eee}
+      .vc-total,.vc-countries{background:#202124;border-color:#555}
+      .vc-label{color:#bbb}
+      .vc-muted{color:#aaa}
+    }
   `;
   document.head.appendChild(style);
 
+  // Keep the existing browser ID so returning visitors are not counted again.
   let visitorId;
   try {
     visitorId = localStorage.getItem('visitor-counter-id');
     if (!visitorId) {
-      visitorId = (crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}-${Math.random().toString(16).slice(2)}`);
+      visitorId = (crypto.randomUUID
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}-${Math.random().toString(16).slice(2)}`);
       localStorage.setItem('visitor-counter-id', visitorId);
     }
   } catch {
     visitorId = `${Date.now()}-${Math.random().toString(16).slice(2)}-${Math.random().toString(16).slice(2)}`;
   }
 
-  const baseQuery = `?site=${encodeURIComponent(siteId)}`;
-  fetch(`${apiBase}/hit${baseQuery}`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ visitorId }), keepalive: true,
-  }).catch(() => {});
+  // Convert ISO alpha-2 country codes to flag emoji (e.g. TH -> 🇹🇭).
+  function countryFlag(countryCode) {
+    if (typeof countryCode !== 'string' || !/^[A-Z]{2}$/.test(countryCode)) return '';
+    return String.fromCodePoint(
+      ...[...countryCode].map(char => 127397 + char.charCodeAt(0))
+    );
+  }
 
-  fetch(`${apiBase}/stats${baseQuery}`).then(r => {
-    if (!r.ok) throw new Error('stats request failed');
-    return r.json();
-  }).then(data => {
-    target.querySelector('[data-vc="views"]').textContent = Number(data.totalViews || 0).toLocaleString();
-    target.querySelector('[data-vc="visitors"]').textContent = Number(data.uniqueVisitors || 0).toLocaleString();
-    target.querySelector('[data-vc="today"]').textContent = Number(data.todayViews || 0).toLocaleString();
-  }).catch(() => {
-    target.querySelectorAll('.vc-stat strong').forEach(el => el.textContent = 'Unavailable');
-  });
+  const baseQuery = `?site=${encodeURIComponent(siteId)}`;
+  const totalEl = target.querySelector('[data-vc="visitors"]');
+  const countriesEl = target.querySelector('[data-vc="countries"]');
+
+  async function loadStats() {
+    try {
+      // Record this visit first, then request stats so the displayed total
+      // includes the current visit.
+      const hitResponse = await fetch(`${apiBase}/hit${baseQuery}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visitorId }),
+        keepalive: true,
+      });
+      if (!hitResponse.ok) throw new Error('visitor hit request failed');
+
+      const statsResponse = await fetch(`${apiBase}/stats${baseQuery}`);
+      if (!statsResponse.ok) throw new Error('stats request failed');
+      const data = await statsResponse.json();
+
+      totalEl.textContent = Number(data.uniqueVisitors || 0).toLocaleString();
+
+      const countryStats = Array.isArray(data.countryStats) ? data.countryStats : [];
+      const validCountries = countryStats
+        .filter(item => /^[A-Z]{2}$/.test(item.country || '') && item.country !== 'XX')
+        .sort((a, b) => Number(b.visitors || 0) - Number(a.visitors || 0));
+
+      countriesEl.replaceChildren();
+
+      if (validCountries.length === 0) {
+        const empty = document.createElement('span');
+        empty.className = 'vc-muted';
+        empty.textContent = 'No country data yet';
+        countriesEl.appendChild(empty);
+        return;
+      }
+
+      for (const item of validCountries) {
+        const entry = document.createElement('span');
+        entry.className = 'vc-country';
+
+        const flag = document.createElement('span');
+        flag.className = 'vc-country-flag';
+        flag.setAttribute('aria-label', item.country);
+        flag.textContent = countryFlag(item.country);
+
+        const count = document.createElement('span');
+        count.className = 'vc-country-count';
+        count.textContent = Number(item.visitors || 0).toLocaleString();
+
+        entry.append(flag, count);
+        countriesEl.appendChild(entry);
+      }
+    } catch (error) {
+      totalEl.textContent = 'Unavailable';
+      countriesEl.replaceChildren();
+      const message = document.createElement('span');
+      message.className = 'vc-muted';
+      message.textContent = 'Unavailable';
+      countriesEl.appendChild(message);
+    }
+  }
+
+  loadStats();
 })();
+"""
+
+path = Path("/mnt/data/widget.js")
+path.write_text(code, encoding="utf-8")
+print(f"Created {path} ({path.stat().st_size} bytes)")
+

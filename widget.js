@@ -135,7 +135,7 @@
       font-size: 12px;
     }
 
-    /* Center the map and use all available website width. */
+    /* Map */
     .vc-map-section {
       display: flex;
       flex-direction: column;

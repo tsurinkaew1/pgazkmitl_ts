@@ -144,7 +144,7 @@
       justify-content: center;
       width: 100%;
       max-width: 100%;
-      margin: 0 auto;
+      margin: 20px auto 0;
       padding: 0;
       box-sizing: border-box;
     }

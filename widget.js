@@ -91,7 +91,6 @@
     }
 
     .vc-country-flag {
-        font-family: "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
         font-size: 22px;
         line-height: 1;
       }

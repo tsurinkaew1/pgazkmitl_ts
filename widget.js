@@ -42,7 +42,7 @@
       align-items: stretch;
       gap: 12px;
       font: 14px/1.4 system-ui, sans-serif;
-      color: #17365d;
+      color: #000000;
     }
 
     .vc-total,
@@ -63,7 +63,7 @@
 
     .vc-label {
       display: block;
-      color: #315b83;
+      color: #000000;
       font-size: 12px;
       margin-bottom: 7px;
     }
@@ -73,7 +73,7 @@
       font-size: 24px;
       font-weight: 700;
       line-height: 1.3;
-      color: #0d47a1;
+      color: #000000;
     }
 
     .vc-country-list {
@@ -102,18 +102,18 @@
     .vc-country-code {
       font-size: 13px;
       font-weight: 600;
-      color: #17365d;
+      color: #000000;
     }
 
     .vc-country-count {
       font-size: 14px;
       font-weight: 650;
       font-variant-numeric: tabular-nums;
-      color: #0d47a1;
+      color: #000000;
     }
 
     .vc-muted {
-      color: #52718f;
+      color: #000000;
       font-size: 12px;
     }
   `;

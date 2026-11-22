@@ -98,6 +98,12 @@
       border-radius: 2px;
     }
 
+    .vc-country-code {
+      font-size: 13px;
+      font-weight: 600;
+      color: inherit;
+    }
+
     .vc-country-count {
       font-size: 14px;
       font-weight: 650;
@@ -215,12 +221,12 @@
         return;
       }
 
-      // Display flag images and counts only.
+      // Display flag, country abbreviation and visitor count.
       for (const item of validCountries) {
         const entry = document.createElement('span');
         entry.className = 'vc-country';
 
-        // Use an image instead of a Unicode flag emoji.
+        // Country flag image.
         const flag = document.createElement('img');
         flag.className = 'vc-country-flag';
         flag.src = `https://flagcdn.com/24x18/${item.country.toLowerCase()}.png`;
@@ -229,18 +235,23 @@
         flag.height = 18;
         flag.loading = 'lazy';
 
-        // Hide the flag image if it cannot be loaded.
         flag.onerror = () => {
           flag.style.display = 'none';
         };
 
+        // Two-letter country abbreviation.
+        const code = document.createElement('span');
+        code.className = 'vc-country-code';
+        code.textContent = item.country;
+
+        // Lifetime unique visitor count.
         const count = document.createElement('span');
         count.className = 'vc-country-count';
         count.textContent = Number(
           item.visitors || 0
         ).toLocaleString();
 
-        entry.append(flag, count);
+        entry.append(flag, code, count);
         countriesEl.appendChild(entry);
       }
 

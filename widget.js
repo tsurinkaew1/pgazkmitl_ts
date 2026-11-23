@@ -156,7 +156,7 @@
       max-width: none;
       height: auto;
       aspect-ratio: 2 / 1;
-      transform: translateX(20px);
+      transform: translateX(30px);
       margin-left: auto;
       margin-right: auto;
       overflow: visible;

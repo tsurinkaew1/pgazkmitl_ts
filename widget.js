@@ -90,7 +90,7 @@
       display: block;
       font-size: 14px;
       font-weight: 650;
-      line-height: 1.4;
+      line-height: 1.2;
       color: #000000;
     }
 
